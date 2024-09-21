@@ -1,0 +1,38 @@
+body.dark {
+    background-color: #000000;
+    -webkit-text-fill-color: #fff;
+    .about-section .about-info a ,.source_code a{
+        margin: auto;
+        color: #fff;
+    }
+    #more{
+        color: #fff;
+    }
+    #moree a{
+        -webkit-text-fill-color: #000000;
+    }
+    ul.custom-bullets{
+      color: #fff;
+    }
+    .nav-menu a{
+        color: #000000;
+    }
+    #moree,.nav-menu{
+        -webkit-text-fill-color: #000000;
+    }
+}
+.toggle-theme {
+    position: fixed;
+    right:10%;
+    top:2%;
+    z-index: 1200;
+    color: #fff;
+}
+/* Toggle button styles */
+.dark-mode-toggle {
+    padding: 12px 30px;
+    background-color:#e5e7eb;
+    border: none;
+    cursor: pointer;
+    border-radius:40px;
+}
