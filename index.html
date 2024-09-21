@@ -46,6 +46,21 @@
                 transform: translateY(-10px);
             }
         }
+        p.slogan {
+            font-size: 1.2em;
+            margin-top: 10px;
+            opacity: 0;
+            animation: fadeIn 2.5s ease-in forwards;
+            animation-delay: 1.5s; /* Delays the slogan animation until after the brand name appears */
+        }
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
         .container {
             max-width: 1200px;
             margin: 20px auto;
@@ -87,7 +102,7 @@
 
 <header>
     <h1>Set to <span>Success</span></h1>
-    <p>Where Success Begins | जहाँ सफलता शुरू होती है</p>
+    <p class="slogan">Where Success Begins | जहाँ सफलता शुरू होती है</p>
 </header>
 
 <div class="toggle-btns">
@@ -101,10 +116,23 @@
         <section class="section mission">
             <h2>Our Mission</h2>
             <p>
-                Our mission is to empower students by providing them with the guidance, resources, and support they need to excel academically and personally.
+                Our mission is to empower students by providing them with the guidance, resources, and support they need to excel academically and personally. We aim to foster a growth mindset and encourage each student to realize their potential.
             </p>
         </section>
-        <!-- other sections omitted for brevity -->
+
+        <section class="section vision">
+            <h2>Our Vision</h2>
+            <p>
+                Our vision is to create an inclusive learning environment where students from all backgrounds can access high-quality education, enabling them to succeed in their academic endeavors and future careers.
+            </p>
+        </section>
+
+        <section class="section brand-story">
+            <h2>Our Brand Story</h2>
+            <p>
+                "Set to Success" was founded with the belief that education is the key to unlocking one's full potential. Our founder, Saurabh Kumar Singh, envisioned a place where students would not only prepare for exams but also develop the skills and mindset necessary for lifelong learning and success. With personalized guidance and a commitment to excellence, we have helped countless students achieve their academic goals.
+            </p>
+        </section>
     </div>
 
     <!-- Hindi Content -->
@@ -112,16 +140,32 @@
         <section class="section mission">
             <h2>हमारा मिशन</h2>
             <p>
-                हमारा मिशन छात्रों को उनकी शैक्षणिक और व्यक्तिगत उत्कृष्टता के लिए आवश्यक मार्गदर्शन प्रदान करना है।
+                हमारा मिशन छात्रों को शैक्षणिक और व्यक्तिगत रूप से उत्कृष्टता प्राप्त करने के लिए आवश्यक मार्गदर्शन, संसाधन और समर्थन प्रदान करना है। हम प्रत्येक छात्र की क्षमता को साकार करने और उसे बढ़ावा देने के लिए एक विकासशील मानसिकता को प्रोत्साहित करते हैं।
             </p>
         </section>
-        <!-- other sections omitted for brevity -->
+
+        <section class="section vision">
+            <h2>हमारा दृष्टिकोण</h2>
+            <p>
+                हमारा दृष्टिकोण एक समावेशी सीखने का वातावरण बनाना है, जहाँ सभी पृष्ठभूमि के छात्रों को उच्च गुणवत्ता वाली शिक्षा तक पहुँच प्राप्त हो, जिससे वे अपने शैक्षणिक प्रयासों और भविष्य के करियर में सफल हो सकें।
+            </p>
+        </section>
+
+        <section class="section brand-story">
+            <h2>हमारी ब्रांड कहानी</h2>
+            <p>
+                "सेट टू सक्सेस" की स्थापना इस विश्वास के साथ की गई थी कि शिक्षा किसी व्यक्ति की पूरी क्षमता को उजागर करने की कुंजी है। हमारे संस्थापक, सौरभ कुमार सिंह, ने एक ऐसा स्थान बनाने का सपना देखा जहाँ छात्र केवल परीक्षाओं की तैयारी नहीं करेंगे, बल्कि जीवन भर सीखने और सफलता के लिए आवश्यक कौशल और मानसिकता भी विकसित करेंगे। व्यक्तिगत मार्गदर्शन और उत्कृष्टता के प्रति प्रतिबद्धता के साथ, हमने कई छात्रों को उनके शैक्षणिक लक्ष्यों को प्राप्त करने में मदद की है।
+            </p>
+        </section>
     </div>
 
     <section class="contact-info">
         <h2>Contact Us | हमसे संपर्क करें</h2>
         <p>Phone: 9999887766</p>
         <p>Website: <a href="http://www.settosuccess.com" target="_blank">www.settosuccess.com</a></p>
+        <p>Email: contact@settosuccess.com</p>
+        <p>Guided by: Saurabh Kumar Singh</p>
+        <h3>Specialized Classes for 9th and 10th (All Boards)</h3>
     </section>
 </div>
 
