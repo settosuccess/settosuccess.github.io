@@ -33,11 +33,14 @@
         margin: 0;
         padding: 0;
     }
-    header {
+    #logo {
         background-color: #4CAF50;
         color: white;
-        text-align: center;
         padding: 20px;
+        /* display: flex; */
+        margin: auto;
+        align-items: center;
+        text-align: center;
     }
     h1 {
         margin: 0;
@@ -83,11 +86,16 @@
             opacity: 1;
         }
     }
-    .container {
+    .container1 {
         max-width: 1200px;
         margin: 20px auto;
         padding: 20px;
         background-color: white;
+        background-image: url('./img/image\ \(1\).png');
+        background-size:cover; /* Set specific width and height */
+        background-position: center;
+        opacity: 0.5; /* 50% visibility */
+        z-index: 0;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         text-align: center;
     }
@@ -129,6 +137,9 @@
     }
     .contact-info p {
         margin: 5px 0;
+    }
+    #logo img{
+      width: 30%;
     }
 </style>
 
@@ -176,14 +187,14 @@
     <!---------------------------------------Header---------------------------------------->
 
     <header id="hamburger" class="header">
-      <div class="container">
+      <!-- <div class="container"> -->
         <div class="row justify-content-between ">
           <div class="hamburger-btn outer-shadow hover-in-shadow">
             <span></span>
           </div>
 
         </div>
-      </div>
+      <!-- </div> -->
     </header>
     <!------------------------------Header--------end---------------------------------->
 
@@ -196,14 +207,11 @@
       <div class="nav-menu-inner">
         <ul>
           <li><a href="#home" class="link-item inner-shadow active" onclick="ScrollHome()">Home</a></li>
-          <li><a href="#about" class="link-item outer-shadow hover-in-shadow" onclick="ScrollAbout()">About</a></li>
-          <li><a href="#experience" class="link-item outer-shadow hover-in-shadow" onclick="ScrollExperience()">Experience</a></li>
-          <li><a href="#project" class="link-item outer-shadow hover-in-shadow" onclick="ScrollProject()">Projects</a>
+          <li><a href="#first" class="link-item outer-shadow hover-in-shadow" onclick="ScrollAbout()">Our Mission</a></li>
+          <li><a href="#vision" class="link-item outer-shadow hover-in-shadow" onclick="ScrollExperience()">Our Vision</a></li>
+          <li><a href="#brand" class="link-item outer-shadow hover-in-shadow" onclick="ScrollProject()">Our Brand Story</a>
           </li>
           <li><a href="#contact" class="link-item outer-shadow hover-in-shadow" onclick="ScrollContact()">Contact</a>
-          </li>
-          <li><a id="moree" href="img/Saurabh_Kumar_Resume.pdf" class="link-item outer-shadow hover-in-shadow"
-              onclick="hideNavMenu() ,resume()" download>Resume</a>
           </li>
       </div>
 
@@ -211,9 +219,6 @@
 
       
     </nav>
-    <div class="fade-out-effect">
-
-    </div>
 
     <!------------------------------------Navigatin----end---------------------------->
 
@@ -222,19 +227,27 @@
     <!---------------------------------Home---Section----Start---------------------------->
 
 
-  <header>
+  <header id="logo">
+    <div>
       <h1>Set to <span>Success</span></h1>
       <p class="slogan">Where Success Begins</p>
       <!-- <p> | जहाँ सफलता की शुरुआत होती है।</p> -->
       <p>Guided by: Saurabh Kumar Singh</p>
       <p>Software Developer Engineer</p>
+    </div>
+    <div>
+      <img src="./img/image.png" alt="">  
+    </div>
+      
   </header>
   
+
+
   <div class="toggle-btns" id="first">
       <button onclick="showEnglish()">English</button>
       <button onclick="showHindi()">हिंदी</button>
   </div>
-  <div class="container" id="mission" >
+  <div class="container1" id="mission" >
       <!-- English Content -->
       <div class="english-content">
           <section class="section mission" id="vision">
