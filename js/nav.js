@@ -61,7 +61,56 @@ jQuery(document).ready(function($){
 
 
 
+let image=[
+    "https://static.thcdn.com/images/xlarge/webp/widgets/121-us/04/0712-STDCRE-38046-SS-MH-Photography-July-22-REMAINING-BATCHING-Shot2-1180x450-021804.png",
+    "https://static.thcdn.com/images/xlarge/webp/widgets/121-us/16/0701-STDCRE-38244-SS-BME-Skinstore-July-4-Assets-Shot_01-1180x450-095516.jpg",
+    "https://static.thcdn.com/images/xlarge/webp/widgets/121-us/38/1180x450-082838.jpg",
+    "https://static.thcdn.com/images/xlarge/webp/widgets/121-us/55/0712_THG0034801_SS_JUL_22_SHOT_03_1180x450-061455.jpg"
+    ]
 
+    let leftbtn=document.querySelector("#lbtn")
+    let rightbtn=document.querySelector("#rbtn")
+    let imagestate=0;
+    let crau=document.querySelector("#crauser")
+
+	function updateImage() {
+		crau.src = image[imagestate];
+	}
+	
+	// Right button click event
+	rightbtn.addEventListener("click", function () {
+		imagestate++;
+		if (imagestate === image.length) {
+			imagestate = 0;
+		}
+		updateImage();
+	});
+	
+	// Left button click event
+	leftbtn.addEventListener("click", function () {
+		imagestate--;
+		if (imagestate < 0) {
+			imagestate = image.length - 1;
+		}
+		updateImage();
+	});
+	
+	// Automatic interval for switching images
+	let interval = setInterval(function () {
+		imagestate++;
+		if (imagestate === image.length) {
+			imagestate = 0;
+		}
+		updateImage();
+	}, 3000); // Change image every 3 seconds
+	
+	// Optional: Clear the interval on button click (if you want to stop automatic slideshow on manual control)
+	// rightbtn.addEventListener("click", function () {
+	// 	clearInterval(interval);
+	// });
+	// leftbtn.addEventListener("click", function () {
+	// 	clearInterval(interval);
+	// });
 
 
 

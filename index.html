@@ -175,7 +175,30 @@
     border-radius: 50%; /* Makes the image circular */
     border: 2px solid #6f00ff; /* Adds a border around the image */
 }
-
+#cr{
+    width: 90%;
+    /* position: relative; */
+    margin: auto;
+}
+#cr>img{
+    width: 100%;
+    height: 400px;
+    
+}
+#cr>button{
+    position: absolute;
+    top:207%;
+    background-color:rgba(228, 214, 214, 0.3);
+    border: 0ch;
+    border-radius: 10px;
+    padding: 10px 20px;
+}
+#lbtn{
+    left:10%;
+}
+#rbtn{
+    right: 10%;
+}
 /* Responsive Design for Smaller Screens */
 @media (max-width: 768px) {
     #logo {
@@ -189,6 +212,8 @@
 
     #logo .logo-image img {
         max-width: 500px;
+    }#cr>button{
+      top:357%;
     }
 }
 
@@ -370,7 +395,11 @@
       </section>
     </div>
   </div>
-  
+  <div id="cr">
+    <img id="crauser" src="https://static.thcdn.com/images/xlarge/webp/widgets/121-us/04/0712-STDCRE-38046-SS-MH-Photography-July-22-REMAINING-BATCHING-Shot2-1180x450-021804.png" alt="">
+    <button id="lbtn"><</button>
+    <button id="rbtn">></button>
+</div>
     <!--------------------------Contact----Section-----Start-------------------->
 
     <section class="contact-section section" id="contact">
