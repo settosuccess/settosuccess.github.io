@@ -21,7 +21,7 @@ body.dark {
         -webkit-text-fill-color: #000000;
     }
 }
-.toggle-theme {
+.toggle-theme,.toggle-btns{
     position: fixed;
     right:10%;
     top:2%;
