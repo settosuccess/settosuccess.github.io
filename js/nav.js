@@ -62,10 +62,9 @@ jQuery(document).ready(function($){
 
 
 let image=[
-    "https://static.thcdn.com/images/xlarge/webp/widgets/121-us/04/0712-STDCRE-38046-SS-MH-Photography-July-22-REMAINING-BATCHING-Shot2-1180x450-021804.png",
-    "https://static.thcdn.com/images/xlarge/webp/widgets/121-us/16/0701-STDCRE-38244-SS-BME-Skinstore-July-4-Assets-Shot_01-1180x450-095516.jpg",
-    "https://static.thcdn.com/images/xlarge/webp/widgets/121-us/38/1180x450-082838.jpg",
-    "https://static.thcdn.com/images/xlarge/webp/widgets/121-us/55/0712_THG0034801_SS_JUL_22_SHOT_03_1180x450-061455.jpg"
+	"./img/1cf6955d-ed40-4faa-9b45-ce5371ed87a7.jpg",
+    "./img/0d91d341-c6cd-4334-a347-f151d563657c.webp",
+	"./img/08dc58b1-ee51-4f3b-af31-d0ecc09f400c.webp"
     ]
 
     let leftbtn=document.querySelector("#lbtn")
