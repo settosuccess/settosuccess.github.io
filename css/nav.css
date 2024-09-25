@@ -33,6 +33,7 @@
     z-index: 999;
 }
 #navbarSupportedContent{
+    margin-right: 25%;
 	overflow: hidden;
 	position: relative;
 }

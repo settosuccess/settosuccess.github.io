@@ -10,7 +10,7 @@ function toggleTheme() {
     updateIcon();
 }
 toggleTheme();
-$(".toggle-theme").on("click", function () {
+$("#darkModeToggle").on("click", function () {
     $("body").toggleClass("dark");
     if ($("body").hasClass("dark")) {
         localStorage.setItem("sketch-theme", "dark");
@@ -21,10 +21,10 @@ $(".toggle-theme").on("click", function () {
 });
 function updateIcon() {
     if ($("body").hasClass("dark")) {
-        $(".toggle-theme i").removeClass("bx-moon");
-        $(".toggle-theme i").addClass("bx-sun");
+        $("#darkModeToggle i").removeClass("bx-moon");
+        $("#darkModeToggle i").addClass("bx-sun");
     } else {
-        $(".toggle-theme i").removeClass("bx-sun");
-        $(".toggle-theme i").addClass("bx-moon");
+        $("#darkModeToggle i").removeClass("bx-sun");
+        $("#darkModeToggle i").addClass("bx-moon");
     }
 }

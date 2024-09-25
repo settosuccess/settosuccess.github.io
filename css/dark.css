@@ -20,19 +20,27 @@ body.dark {
     #moree,.nav-menu{
         -webkit-text-fill-color: #000000;
     }
+    .dark-mode-toggle{
+        color:#000000;
+        background-color:#e5e7eb;
+        border: none;
+    }
+    
 }
-.toggle-theme,.toggle-btns{
+.toggle-theme{
     position: fixed;
-    right:10%;
+    right:8%;
     top:2%;
     z-index: 1200;
     color: #fff;
 }
 /* Toggle button styles */
-.dark-mode-toggle {
+.dark-mode-toggle,.toggle-btns {
     padding: 12px 30px;
-    background-color:#e5e7eb;
-    border: none;
     cursor: pointer;
     border-radius:40px;
+    margin-left: 20px;
+    background-color: rgb(0, 0, 0);
+    border: 1px solid white;
+    color: white;
 }

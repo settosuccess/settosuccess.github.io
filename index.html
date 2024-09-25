@@ -13,10 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.0/css/boxicons.min.css"
 		integrity="sha512-pVCM5+SN2+qwj36KonHToF2p1oIvoU3bsqxphdOIWMYmgr4ZqD3t5DjKvvetKhXGc/ZG5REYTT6ltKfExEei/Q=="
 		crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css"> -->
     <script src="https://kit.fontawesome.com/19ae1c0515.js" crossorigin="anonymous"></script>
-    <!-- Google tag (gtag.js) -->
-    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-BZPV4F3MSR"></script> -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag() { dataLayer.push(arguments); }
@@ -105,11 +102,7 @@
     #mission section p {
         text-align: justify;
     }
-    .toggle-btns {
-        text-align: center;
-        margin: 20px;
-    }
-    .toggle-btns button {
+    /* .toggle-btns{
         padding: 10px 20px;
         margin: 5px;
         cursor: pointer;
@@ -117,7 +110,7 @@
         color: white;
         border: none;
         border-radius: 5px;
-    }
+    } */
     footer {
         background-color: #333;
         color: white;
@@ -220,22 +213,17 @@
 </style>
 
   <body>
-    <div class="toggle-theme" title="Change theme">
-      <button id="darkModeToggle" class="dark-mode-toggle light">
-        <i class="bx"></i>
-      </button>
-      
-    </div>
-    <div class="toggle-btns" id="first">
+
+    <!-- <div class="toggle-btns" id="first">
       <button onclick="showEnglish()">English</button>
       <button onclick="showHindi()">हिंदी</button>
     </div>
-    
+     -->
     <nav class="navbar navbar-expand-custom navbar-mainbg" id="first_nav">
-      <button class="navbar-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false"
+      <!-- <button class="navbar-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false"
         aria-label="Toggle navigation">
         <i class="fas fa-bars text-white"></i>
-      </button>
+      </button> -->
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
           <div class="hori-selector">
@@ -261,6 +249,13 @@
             <a class="nav-link" href="#contact"><i class="far fa-address-book"></i>Contact</a>
           </li>
         </ul>
+      </div>
+      <div class="toggle-theme" title="Change theme">
+        <button id="darkModeToggle" class="dark-mode-toggle light">
+          <i class="bx"></i>
+        </button>
+        <button class="toggle-btns" onclick="showEnglish()">English</button>
+        <button class="toggle-btns" onclick="showHindi()">हिंदी</button>
       </div>
     </nav>
 
