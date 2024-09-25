@@ -113,3 +113,26 @@ let image=[
 
 
 
+	let logo=[
+		"./img/1000074130.png",
+		"./img/1000074290 (1).png",
+		"./img/image (1).png",
+		"./img/image.png"
+		]
+	
+	let i=0;
+	let crause=document.querySelector("#logoImg")
+
+	function updateImage2() {
+		crause.src = logo[i];
+	}
+
+	// Automatic interval for switching images
+	let interval2 = setInterval(function () {
+		i++;
+		
+		if (i === logo.length) {
+			i = 0;
+		}
+		updateImage2();
+	}, 5000); // Change image every 3 seconds
