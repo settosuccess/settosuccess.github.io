@@ -1,35 +1,44 @@
 body.dark {
     background-color: #000000;
-    -webkit-text-fill-color: #fff;
-    .about-section .about-info a ,.source_code a{
+    /* -webkit-text-fill-color: #fff; */
+    /* .about-section .about-info a ,.source_code a{
         margin: auto;
         color: #fff;
-    }
-    #more{
+    } */
+    /* #more{
         color: #fff;
-    }
-    #moree a{
+    } */
+    /* #moree a{
         -webkit-text-fill-color: #000000;
-    }
-    ul.custom-bullets{
+    } */
+    /* ul.custom-bullets{
       color: #fff;
-    }
+    } */
     .nav-menu a{
         color: #000000;
     }
     #moree,.nav-menu{
         -webkit-text-fill-color: #000000;
     }
-    #darkModeToggle{
-        background-color:rgb(239,240,244);
+    #darkModeToggle,.toggle-btns{
+        background-color:#eff0f4;
         color: #000000;
     }
-    
+    #first_nav {
+        --skin-color: #000000;
+        border: 1px solid rgb(239,240,244);
+    }
+    #logo{
+        background-color: black;
+    }
+    h1,p,h2,.row p,.row span,.row i,.row input::placeholder,.row textarea::placeholder{
+        color: white;
+    }
 }
 .toggle-theme{
     position: fixed;
     right:8%;
-    top:2%;
+    top:1.5%;
     z-index: 1200;
     color: #fff;
 }
@@ -39,7 +48,7 @@ body.dark {
     cursor: pointer;
     border-radius:40px;
     margin-left: 20px;
-    background-color: rgb(2, 2, 2);
+    background-color: #a6b1a6;
     border: 1px solid rgb(236, 236, 236);
     color: rgb(255, 255, 255);
 }

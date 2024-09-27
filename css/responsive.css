@@ -87,22 +87,29 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 30px;
   }
-  #footer-section{
+  /* #footer-section{
     text-align: center;
     margin-top: -5%;
-  }
+  } */
   .toggle-theme {
     color: black;
+    background-color: #ff0101;
+    width:100%;
+    margin-right:-8%;
+    margin-top: -3%;
+    /* margin: auto;
+    margin-left: 500px;  */
+    gap: 10px;
   }
-  #darkModeToggle{
-    margin: auto;
-    padding:16px 16px;
-    border-radius:50%;
-    margin-top:6%;
-    background-color:#e5e7eb;
+  .toggle-theme button{
+    border: none;
+    border-radius: 0%;
+    background-color: transparent;
+    /* padding: 10px 10px; */
   }
-  
-}
+  /* #hamburger span{
+    background-color: transparent;
+  } */
 
 @media (max-width: 767px) and (min-width: 600px) {
   .contact-section .contact-item,
@@ -193,7 +200,7 @@
   .toggle-theme {
     color: black;
   }
-  .darkModeToggle{
+  .toggle-theme{
     margin: auto;
     padding:16px 16px;
     border-radius:50%;

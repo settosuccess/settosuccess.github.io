@@ -97,7 +97,7 @@
       font-weight: 700;
       color: var(--text-black-900);
       text-transform: uppercase;
-      margin: 10px;
+      /* margin: 10px; */
     }
     #mission section p {
         text-align: justify;
@@ -125,9 +125,10 @@
     display: flex;
     justify-content: space-around; /* Aligns text and image on opposite sides */
     align-items: center; /* Vertically centers the items */
-    background-color: #35c730;
+    background-color: #a6b1a6;
     padding: 20px;
     border-bottom: 2px solid #ddd;
+    width: 90%;
 }
 
 #logo .text-content {
@@ -245,27 +246,26 @@
           </li>
         </ul>
       </div>
-      <div class="toggle-theme" title="Change theme">
+      
+    </nav>
+    <div class="toggle-theme" title="Change theme" >
+      <header id="hamburger" class="header">
+        <!-- <div class="container"> -->
+          <div class="row justify-content-between ">
+            <div class="hamburger-btn outer-shadow hover-in-shadow">
+              <span></span>
+            </div>
+          </div>
+        <!-- </div> -->
+      </header>
         <button id="darkModeToggle" class="dark-mode-toggle light">
           <i class="bx"></i>
         </button>
         <button class="toggle-btns" onclick="showEnglish()">English</button>
         <button class="toggle-btns" onclick="showHindi()">हिंदी</button>
       </div>
-    </nav>
-
     <!---------------------------------------Header---------------------------------------->
 
-    <header id="hamburger" class="header">
-      <!-- <div class="container"> -->
-        <div class="row justify-content-between ">
-          <div class="hamburger-btn outer-shadow hover-in-shadow">
-            <span></span>
-          </div>
-
-        </div>
-      <!-- </div> -->
-    </header>
     <!------------------------------Header--------end---------------------------------->
 
 
@@ -297,7 +297,7 @@
     <!---------------------------------Home---Section----Start---------------------------->
 
 
-    <header id="logo">
+    <header id="logo"  class="contact-item-inner outer-shadow">
       <div class="text-content">
           <h1>Set to <span>Success</span></h1>
           <p class="slogan">Where Success Begins</p>
@@ -386,7 +386,7 @@
       </section></div>
     </div>
   </div>
-  <div id="cr">
+  <div id="cr"  class="contact-item-inner outer-shadow">
     <img id="crauser" src="./img/1cf6955d-ed40-4faa-9b45-ce5371ed87a7.jpg" alt="">
     <button id="lbtn"><</button>
     <button id="rbtn">></button>
@@ -505,7 +505,7 @@
               <div class="row">
                 <div class="submit-btn">
                   <button type="submit" class="btn-1 outer-shadow hover-in-shadow" id="submitButton">
-                    <span id="buttonText">Send Message</span>
+                    <span style="color: #333;" id="buttonText">Send Message</span>
                     <div class="spinner" id="spinner"></div>
                   </button>
                 </div>
