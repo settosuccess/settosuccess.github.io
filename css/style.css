@@ -1123,3 +1123,20 @@ h3 {
 h3 i {
   color: #444;
 }
+#hamburger{
+  position: fixed;
+  left:70%;
+  top:-1.5%;
+  z-index: 1200;
+  color: #fff;
+  font-size: large;
+}
+/* Toggle button styles */
+#toggle button {
+  padding: 12px 30px;
+  cursor: pointer;
+  /* margin-left: 20px; */
+  background-color:transparent;
+  border: none;
+  color: rgb(255, 255, 255);
+}

@@ -33,7 +33,7 @@
     z-index: 999;
 }
 #navbarSupportedContent{
-    margin-right: 25%;
+    margin-right: 20%;
 	overflow: hidden;
 	position: relative;
 }
@@ -149,8 +149,8 @@
 } */
 
 
-@media(min-width: 771px){
-	#hamburger{
+@media(min-width: 1055px){
+	#a2{
         display: none;
     }
 }

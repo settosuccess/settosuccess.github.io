@@ -178,11 +178,6 @@
     border-radius: 10px;
     padding: 10px 20px;
 }
-/* .text-content{
-  position: fixed;
-  top:13%;
-  background-color: #21718a;
-} */
 #lbtn{
     left:10%;
 }
@@ -208,7 +203,7 @@
       top:357%;
     }
     section h2{
-      font-size: 25px;
+      font-size: 22px;
     }
 }
 
@@ -248,22 +243,19 @@
       </div>
       
     </nav>
-    <div class="toggle-theme" title="Change theme" >
-      <header id="hamburger" class="header">
-        <!-- <div class="container"> -->
-          <div class="row justify-content-between ">
-            <div class="hamburger-btn outer-shadow hover-in-shadow">
-              <span></span>
-            </div>
-          </div>
-        <!-- </div> -->
-      </header>
+    <div id="hamburger" class="header" title="Change theme" >
+      <div id="a2" class="hamburger-btn outer-shadow hover-in-shadow">
+          <span></span>
+      </div>
+      <div id="toggle">
         <button id="darkModeToggle" class="dark-mode-toggle light">
           <i class="bx"></i>
         </button>
-        <button class="toggle-btns" onclick="showEnglish()">English</button>
-        <button class="toggle-btns" onclick="showHindi()">हिंदी</button>
+        <button onclick="showEnglish()">English</button>
+        <button  onclick="showHindi()">हिंदी</button>
       </div>
+      
+    </div>
     <!---------------------------------------Header---------------------------------------->
 
     <!------------------------------Header--------end---------------------------------->
