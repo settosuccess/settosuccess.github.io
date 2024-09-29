@@ -15,11 +15,13 @@ function resume() {
     closeNavBtn.addEventListener("click", hideNavMenu)
 
     function showNavMenu() {
+        document.querySelector("#hamburger").style.display="none";
         navMenu.classList.add("open");
         bodyScrollingToggle();
     }
 
     function hideNavMenu() {
+        document.querySelector("#hamburger").style.display="block";
         navMenu.classList.remove("open");
         bodyScrollingToggle();
         fadeOut();

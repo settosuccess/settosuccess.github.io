@@ -31,7 +31,7 @@ body.dark {
     #logo{
         background-color: black;
     }
-    h1,p,h2,.row p,.row span,.row i,.row input::placeholder,.row textarea::placeholder{
+    h1,p,h2,.row p,.row span,.row i,.row input::placeholder,.row textarea::placeholder,#buttonText{
         color: white;
     }
 }

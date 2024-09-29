@@ -156,7 +156,7 @@
 }
 
 
-@media (max-width: 770px){
+@media (max-width: 1055px){
     #navbarSupportedContent{
         display: none;
     }

@@ -449,9 +449,9 @@ img {
   border-radius: 30px;
   transition: all 0.3s ease;
 }
-.nav-menu ul li a.active {
+/* .nav-menu ul li a.active {
   color: var(--skin-color);
-}
+} */
 .nav-menu ul li a::after {
   border-radius: 30px;
 }
@@ -1131,12 +1131,13 @@ h3 i {
   color: #fff;
   font-size: large;
 }
-/* Toggle button styles */
 #toggle button {
   padding: 12px 30px;
   cursor: pointer;
-  /* margin-left: 20px; */
   background-color:transparent;
   border: none;
   color: rgb(255, 255, 255);
+}
+#buttonText{
+  color: black;
 }
