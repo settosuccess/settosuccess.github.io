@@ -255,7 +255,7 @@ img {
   z-index: 99;
   position: sticky;
 }
-
+/* 
 .header .logo a {
   display: inline-block;
   text-align: center;
@@ -268,7 +268,7 @@ img {
   border: 0.125rem solid var(--skin-color);
   font-weight: 600;
   text-transform: uppercase;
-}
+} */
 
 .header .hamburger-btn {
   height: 2.5rem;
@@ -1140,4 +1140,7 @@ h3 i {
 }
 #buttonText{
   color: black;
+}
+h2{
+  margin-bottom: 15px;
 }
