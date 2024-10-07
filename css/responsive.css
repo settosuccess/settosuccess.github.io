@@ -37,20 +37,14 @@
 
   #logo .text-content {
     max-width: 100%;
-    margin-top:15%;
+    margin-top:20%;
   }
 
   #logo .logo-image img {
     max-width: 500px;
-  }#cr>button{
-  top:357%;
   }
   section h2{
   font-size: 22px;
-  }
-  #lbtn, #rbtn {
-    padding: 5px;
-    font-size: 14px;
   }
 }
 @media (max-width: 1054px) and (min-width: 600px) {
@@ -67,8 +61,6 @@
 
   #logo .logo-image img {
     max-width: 500px;
-  }#cr>button{
-  top:357%;
   }
   section h2{
   font-size: 22px;
@@ -95,9 +87,6 @@
   #a2{
     margin-top:15px;
     margin-left:5%;
-  }#lbtn, #rbtn {
-    padding: 50px;
-    font-size: 140px;
-    left: 20px;   
+    
   }
 }
