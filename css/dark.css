@@ -4,7 +4,7 @@ body.dark {
         /* background-color:#eff0f4; */
         color: #000000;
     }
-    #first_nav {
+    .contact-item-inner outer-shadow {
         --skin-color: #000000;
         border: 1px solid rgb(239,240,244);
     }
@@ -12,7 +12,7 @@ body.dark {
         background-color: black;
     }
     h1,p,h2,.row p,.row span,.row i,.row input::placeholder,.row textarea::placeholder,#buttonText{
-        color: #e0e6ed;
+        color: #ced4db;
     }
 }
 

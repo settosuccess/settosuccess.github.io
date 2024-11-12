@@ -1,4 +1,7 @@
 @media (max-width: 600px) {
+  .container1 p{
+    font-weight: lighter;
+  }
   .contact-section .contact-item{
     flex: 0 0 100%;
     max-width: 100%;
@@ -30,7 +33,7 @@
     padding: 5% 10%;
   }
   #logo{
-    margin-top:40%;
+    /* margin-top:50%; */
     flex-direction: column;
     text-align: center;
   }
