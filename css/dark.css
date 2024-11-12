@@ -4,10 +4,7 @@ body.dark {
         /* background-color:#eff0f4; */
         color: #000000;
     }
-    .contact-item-inner outer-shadow {
-        --skin-color: #000000;
-        border: 1px solid rgb(239,240,244);
-    }
+    
     #logo{
         background-color: black;
     }

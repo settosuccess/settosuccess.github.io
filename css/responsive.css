@@ -33,14 +33,12 @@
     padding: 5% 10%;
   }
   #logo{
-    /* margin-top:50%; */
     flex-direction: column;
     text-align: center;
   }
 
   #logo .text-content {
-    max-width: 100%;
-    margin-top:20%;
+    margin-top:30%;
   }
 
   #logo .logo-image img {
