@@ -41,6 +41,7 @@
       padding: 20px;
       border-bottom: 2px solid #ddd;
       width: 90%;
+      margin-bottom: 15px;
     }
     h1 {
         margin: 0;
@@ -91,19 +92,22 @@
     }
     .container1 section {
         max-width: 95%;
-        margin: 30px auto;
+        margin: -15px auto;
         padding: 20px;
         z-index: 0;
         text-align: center;
         
     }
-    section h2{
+    .gallery{
+      text-align: center;
+      margin-top: 10px;
+    }
+    section h2,.gallery h2{
       display: inline-block;
       font-size: 30px;
       font-weight: 700;
       color: var(--text-black-900);
       text-transform: uppercase;
-      /* margin: 10px; */
     }
     #mission section p {
         text-align: justify;
@@ -374,11 +378,15 @@
       </section></div>
     </div>
   </div>
-<div id="cr">
-  <img id="crauser" src="./img/1cf6955d-ed40-4faa-9b45-ce5371ed87a7.jpg" alt="">
-  <button id="lbtn"><</button>
-  <button id="rbtn">></button>
-</div>
+
+  <div class="gallery">
+    <h2>Gallery</h2>
+    <div id="cr">
+      <img id="crauser" src="./img/1cf6955d-ed40-4faa-9b45-ce5371ed87a7.jpg" alt="">
+      <button id="lbtn"><</button>
+      <button id="rbtn">></button>
+    </div>
+  </div>
     <!--------------------------Contact----Section-----Start-------------------->
 
     <section class="contact-section section" id="contact">

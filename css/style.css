@@ -838,7 +838,7 @@ body {
 h3 {
   font-size: 30px;
   font-weight: 400;
-  margin-top: 50px;
+  /* margin-top: 50px; */
 }
 h3 i {
   color: #444;
