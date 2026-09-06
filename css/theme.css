@@ -30,5 +30,19 @@ body,.site-header,.hero,.approach,.gallery,.contact,.approach-card,.primary-nav,
 @keyframes logo-float{0%,100%{transform:rotate(2deg) translateY(0)}50%{transform:rotate(-1deg) translateY(-9px)}}
 @keyframes card-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 @keyframes stripe-shift{to{background-position:200% 0}}
+/* Current section indicator */
+.primary-nav a{position:relative;padding:8px 2px}
+.primary-nav a::after{content:"";position:absolute;left:50%;right:50%;bottom:1px;height:2px;border-radius:2px;background:var(--gold);transition:left .25s ease,right .25s ease}
+.primary-nav a.active{color:var(--blue)}
+.primary-nav a.active::after{left:2px;right:2px}
+/* Click-to-feature gallery */
+.gallery-item{cursor:pointer;outline:none}
+.gallery-item:focus-visible{box-shadow:0 0 0 4px var(--paper),0 0 0 7px var(--blue)}
+.gallery-item:not(.gallery-featured)::before{content:"↗";position:absolute;z-index:3;right:16px;top:16px;width:35px;height:35px;display:grid;place-items:center;border-radius:50%;background:rgba(255,255,255,.9);color:#081e2c;font-weight:800;opacity:0;transform:scale(.8);transition:opacity .25s ease,transform .25s ease}
+.gallery-item:not(.gallery-featured):hover::before,.gallery-item:not(.gallery-featured):focus-visible::before{opacity:1;transform:none}
+.gallery-featured{box-shadow:0 0 0 3px var(--gold),0 18px 45px rgba(8,30,44,.18)}
+.gallery-featured::before{content:"AUTO";position:absolute;z-index:3;right:16px;top:16px;padding:7px 11px;border-radius:999px;background:rgba(8,30,44,.82);color:#fff;font-size:10px;font-weight:800;letter-spacing:.12em;backdrop-filter:blur(8px)}
+.gallery-swap img{animation:gallery-reveal .45s ease both}
+@keyframes gallery-reveal{from{opacity:.3;transform:scale(1.04);filter:blur(5px)}to{opacity:1;transform:scale(1);filter:blur(0)}}
 @media(max-width:650px){.theme-button{width:38px;height:38px}.floating-top{right:16px;bottom:16px}.nav-actions{gap:8px}}
 @media(prefers-reduced-motion:reduce){.visual-orbit,.logo-card,.floating-card,.hero-stripe{animation:none}.theme-button,.floating-top{transition:none}}

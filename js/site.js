@@ -70,3 +70,58 @@ const scrollTop=()=>window.scrollTo({top:0,left:0,behavior:window.matchMedia('(p
 document.querySelector('.back-top').addEventListener('click',event=>{event.preventDefault();scrollTop()});
 floatingTop.addEventListener('click',scrollTop);
 window.addEventListener('scroll',()=>floatingTop.classList.toggle('visible',window.scrollY>500),{passive:true});
+
+const galleryItems=[...document.querySelectorAll('.gallery-item')];
+const featuredItem=document.querySelector('.gallery-featured');
+function selectGalleryItem(item){
+  if(item===featuredItem)return;
+  const mainImage=featuredItem.querySelector('img');
+  const selectedImage=item.querySelector('img');
+  const mainCaption=featuredItem.querySelector('figcaption');
+  const selectedCaption=item.querySelector('figcaption');
+  const mainData={src:mainImage.src,alt:mainImage.alt,en:mainCaption.dataset.en,hi:mainCaption.dataset.hi,text:mainCaption.textContent};
+  mainImage.src=selectedImage.src;mainImage.alt=selectedImage.alt;
+  mainCaption.dataset.en=selectedCaption.dataset.en;mainCaption.dataset.hi=selectedCaption.dataset.hi;mainCaption.textContent=selectedCaption.textContent;
+  selectedImage.src=mainData.src;selectedImage.alt=mainData.alt;
+  selectedCaption.dataset.en=mainData.en;selectedCaption.dataset.hi=mainData.hi;selectedCaption.textContent=mainData.text;
+  featuredItem.classList.remove('gallery-swap');
+  void featuredItem.offsetWidth;
+  featuredItem.classList.add('gallery-swap');
+}
+let galleryTimer;
+let galleryStep=1;
+const motionReduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+function stopGalleryShuffle(){clearInterval(galleryTimer)}
+function startGalleryShuffle(){
+  stopGalleryShuffle();
+  if(motionReduced)return;
+  galleryTimer=setInterval(()=>{
+    selectGalleryItem(galleryItems[galleryStep]);
+    galleryStep=galleryStep===galleryItems.length-1?1:galleryStep+1;
+  },5000);
+}
+galleryItems.forEach((item,index)=>{
+  item.tabIndex=0;
+  item.setAttribute('role','button');
+  item.setAttribute('aria-label',index===0?'Main gallery image':'Show this image as main image');
+  item.addEventListener('click',()=>{selectGalleryItem(item);startGalleryShuffle()});
+  item.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();selectGalleryItem(item);startGalleryShuffle()}});
+});
+const galleryGrid=document.querySelector('.gallery-grid');
+galleryGrid.addEventListener('mouseenter',stopGalleryShuffle);
+galleryGrid.addEventListener('mouseleave',startGalleryShuffle);
+galleryGrid.addEventListener('focusin',stopGalleryShuffle);
+galleryGrid.addEventListener('focusout',event=>{if(!galleryGrid.contains(event.relatedTarget))startGalleryShuffle()});
+document.addEventListener('visibilitychange',()=>document.hidden?stopGalleryShuffle():startGalleryShuffle());
+startGalleryShuffle();
+
+const sectionLinks=[...document.querySelectorAll('.primary-nav a[href^="#"]')];
+const sectionMap=new Map(sectionLinks.map(link=>[link.getAttribute('href').slice(1),link]));
+const trackedSections=[...sectionMap.keys()].map(id=>document.getElementById(id)).filter(Boolean);
+function activateSection(id){sectionLinks.forEach(link=>link.classList.toggle('active',link===sectionMap.get(id)))}
+const sectionObserver=new IntersectionObserver(entries=>{
+  const visible=entries.filter(entry=>entry.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio);
+  if(visible[0])activateSection(visible[0].target.id);
+},{rootMargin:'-32% 0px -55% 0px',threshold:[0,.15,.4,.7]});
+trackedSections.forEach(section=>sectionObserver.observe(section));
+sectionLinks.forEach(link=>link.addEventListener('click',()=>activateSection(link.getAttribute('href').slice(1))));
