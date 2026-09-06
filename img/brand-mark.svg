@@ -1,1 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title"><title id="title">Set to Success</title><rect width="64" height="64" rx="16" fill="#0b2c3d"/><path d="M12 25 32 14l20 11-20 11-20-11Z" fill="#f5b942"/><path d="M19 31v10c7 7 19 7 26 0V31l-13 7-13-7Z" fill="#f7fbfa"/><path d="M51 27v15" stroke="#f5b942" stroke-width="3" stroke-linecap="round"/><circle cx="51" cy="45" r="3" fill="#f5b942"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">Set to Success</title>
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#123f52"/><stop offset="1" stop-color="#071923"/></linearGradient></defs>
+  <rect width="64" height="64" rx="17" fill="url(#g)"/>
+  <path d="M13 39c7-4 13-4 19 1 6-5 12-5 19-1V24c-7-3-13-2-19 3-6-5-12-6-19-3v15Z" fill="none" stroke="#f7fbfa" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M32 27v13M23 18l9-7 9 7M32 12v17" fill="none" stroke="#f5b942" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M18 47h28" stroke="#5fc0d7" stroke-width="3" stroke-linecap="round"/>
+</svg>
