@@ -22,6 +22,7 @@ nav.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{
 }));
 
 const navActions=document.querySelector('.nav-actions');
+navActions.after(menuButton);
 const themeButton=document.createElement('button');
 themeButton.className='theme-button';
 themeButton.type='button';

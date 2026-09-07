@@ -153,6 +153,18 @@ html[data-theme="dark"] .admission-form{background:#0b2632}.admission-section,.a
 @media(max-width:650px){.journey-art{min-height:330px}.journey-steps li{padding:20px}.support-grid{gap:42px}}
 @media(max-width:960px){.classroom-grid{grid-template-columns:1fr;gap:38px}.classroom-copy{max-width:720px}}
 @media(max-width:650px){.classroom-art{border-radius:20px}.learning-symbol{display:none}}
-@media(max-width:650px){.theme-button{width:38px;height:38px}.floating-top{right:16px;bottom:16px}.nav-actions{gap:8px}}
+@media(max-width:960px){.nav-actions{margin-left:auto}.nav-wrap .menu-button{margin-left:0;flex-shrink:0}}
+@media(max-width:650px){
+  .nav-wrap{gap:7px}
+  .menu-button{width:40px;height:40px;margin-left:auto}
+  .nav-actions{gap:6px}
+  .theme-button{width:36px;height:36px}
+  .language-button{display:flex;padding:2px}
+  .language-button span{padding:4px 6px;font-size:10px}
+  .hero-stripe{display:grid;grid-template-columns:auto 4px auto 4px auto 4px auto;justify-content:center;gap:clamp(7px,2.7vw,14px);width:100%;min-width:0;padding:14px 9px;overflow:visible;font-size:9px;letter-spacing:.1em;white-space:nowrap}
+  .hero-stripe i{width:4px;height:4px}
+  .floating-top{right:16px;bottom:16px}
+}
+@media(max-width:370px){.brand span{display:none}.language-button span{padding:4px 5px}}
 @media(max-width:650px){.about-summary{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){.visual-orbit,.logo-card,.floating-card,.hero-stripe,.classroom-art img,.classroom-art::after,.learning-symbol,.teaching-pulse,.chalk-line,.lesson-live i{animation:none}.frame-one{opacity:1}.frame-two{opacity:0}.chalk-motion{display:none}.theme-button,.floating-top{transition:none}}
