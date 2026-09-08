@@ -295,7 +295,9 @@ window.addEventListener('scroll',()=>floatingTop.classList.toggle('visible',wind
 
 const galleryItems=[...document.querySelectorAll('.gallery-item')];
 const featuredItem=document.querySelector('.gallery-featured');
+const mobileCarouselQuery=window.matchMedia('(max-width: 650px)');
 function selectGalleryItem(item){
+  if(mobileCarouselQuery.matches)return;
   if(item===featuredItem)return;
   const mainImage=featuredItem.querySelector('img');
   const selectedImage=item.querySelector('img');
@@ -316,7 +318,7 @@ const motionReduced=window.matchMedia('(prefers-reduced-motion: reduce)').matche
 function stopGalleryShuffle(){clearInterval(galleryTimer)}
 function startGalleryShuffle(){
   stopGalleryShuffle();
-  if(motionReduced)return;
+  if(motionReduced||mobileCarouselQuery.matches||document.hidden)return;
   galleryTimer=setInterval(()=>{
     selectGalleryItem(galleryItems[galleryStep]);
     galleryStep=galleryStep===galleryItems.length-1?1:galleryStep+1;
@@ -336,6 +338,68 @@ galleryGrid.addEventListener('focusin',stopGalleryShuffle);
 galleryGrid.addEventListener('focusout',event=>{if(!galleryGrid.contains(event.relatedTarget))startGalleryShuffle()});
 document.addEventListener('visibilitychange',()=>document.hidden?stopGalleryShuffle():startGalleryShuffle());
 startGalleryShuffle();
+
+// Mobile tracks use native scrolling so touch swipes and arrow buttons stay in sync.
+mobileCarouselQuery.addEventListener('change',startGalleryShuffle);
+['.gallery-grid','.classes-grid','.career-paths'].forEach(selector=>{
+  const track=document.querySelector(selector);
+  const slides=[...track.children];
+  const shell=document.createElement('div');
+  shell.className='mobile-carousel';
+  track.before(shell);
+  shell.appendChild(track);
+  track.classList.add('carousel-track');
+  const controls=document.createElement('div');
+  controls.className='carousel-controls';
+  controls.innerHTML='<button type="button" class="carousel-prev" aria-label="Previous slide">←</button><span class="carousel-count"></span><button type="button" class="carousel-pause" aria-label="Pause automatic slides">Ⅱ</button><button type="button" class="carousel-next" aria-label="Next slide">→</button>';
+  shell.appendChild(controls);
+  const count=controls.querySelector('.carousel-count');
+  const pause=controls.querySelector('.carousel-pause');
+  let index=0,timer,visible=false,paused=false,touching=false;
+  const reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
+  function update(){
+    count.textContent=`${index+1} / ${slides.length}`;
+    slides.forEach((slide,i)=>{
+      slide.inert=mobileCarouselQuery.matches&&i!==index;
+      if(mobileCarouselQuery.matches)slide.classList.add('visible');
+    });
+  }
+  function move(step){
+    index=(index+step+slides.length)%slides.length;
+    track.scrollTo({left:index*(track.clientWidth+16),behavior:reduced.matches?'instant':'smooth'});
+    update();
+  }
+  function restart(){
+    clearInterval(timer);
+    if(!mobileCarouselQuery.matches||!visible||paused||touching||reduced.matches||document.hidden||shell.contains(document.activeElement))return;
+    timer=setInterval(()=>move(1),5000);
+  }
+  controls.querySelector('.carousel-prev').addEventListener('click',()=>{move(-1);restart()});
+  controls.querySelector('.carousel-next').addEventListener('click',()=>{move(1);restart()});
+  pause.addEventListener('click',()=>{
+    paused=!paused;
+    pause.textContent=paused?'▶':'Ⅱ';
+    pause.setAttribute('aria-label',paused?'Resume automatic slides':'Pause automatic slides');
+    restart();
+  });
+  track.addEventListener('scroll',()=>{
+    if(!mobileCarouselQuery.matches)return;
+    index=Math.max(0,Math.min(slides.length-1,Math.round(track.scrollLeft/(track.clientWidth+16))));
+    update();
+  },{passive:true});
+  shell.addEventListener('focusin',()=>clearInterval(timer));
+  shell.addEventListener('focusout',event=>{if(!shell.contains(event.relatedTarget))setTimeout(restart,0)});
+  track.addEventListener('pointerdown',()=>{touching=true;clearInterval(timer)},{passive:true});
+  window.addEventListener('pointerup',()=>{if(touching){touching=false;restart()}},{passive:true});
+  track.addEventListener('pointercancel',()=>{touching=false;restart()},{passive:true});
+  const visibility=new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;restart()},{threshold:.3});
+  visibility.observe(shell);
+  function reset(){index=0;track.scrollTo({left:0,behavior:'instant'});update();restart()}
+  mobileCarouselQuery.addEventListener('change',reset);
+  reduced.addEventListener('change',restart);
+  document.addEventListener('visibilitychange',restart);
+  update();
+});
 
 const sectionLinks=[...document.querySelectorAll('.primary-nav a[href^="#"]')];
 const sectionMap=new Map(sectionLinks.map(link=>[link.getAttribute('href').slice(1),link]));
