@@ -416,7 +416,7 @@ const galleryItems=[...document.querySelectorAll('.gallery-item')];
 const featuredItem=document.querySelector('.gallery-featured');
 const mobileCarouselQuery=window.matchMedia('(max-width: 650px)');
 function selectGalleryItem(item){
-  if(item.closest('.compact-list'))return;
+  if(item.closest('.compact-list')&&!window.matchMedia('(min-width: 961px)').matches)return;
   if(item===featuredItem)return;
   const mainImage=featuredItem.querySelector('img');
   const selectedImage=item.querySelector('img');
@@ -434,11 +434,11 @@ function selectGalleryItem(item){
 let galleryTimer;
 let galleryStep=1;
 const motionReduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const desktopGalleryQuery=window.matchMedia('(min-width: 961px)');
 function stopGalleryShuffle(){clearInterval(galleryTimer)}
 function startGalleryShuffle(){
   stopGalleryShuffle();
-  if(featuredItem.closest('.compact-list'))return;
-  if(motionReduced||mobileCarouselQuery.matches||document.hidden)return;
+  if(motionReduced||!desktopGalleryQuery.matches||document.hidden)return;
   galleryTimer=setInterval(()=>{
     selectGalleryItem(galleryItems[galleryStep]);
     galleryStep=galleryStep===galleryItems.length-1?1:galleryStep+1;
@@ -457,7 +457,8 @@ galleryGrid.addEventListener('mouseleave',startGalleryShuffle);
 galleryGrid.addEventListener('focusin',stopGalleryShuffle);
 galleryGrid.addEventListener('focusout',event=>{if(!galleryGrid.contains(event.relatedTarget))startGalleryShuffle()});
 document.addEventListener('visibilitychange',()=>document.hidden?stopGalleryShuffle():startGalleryShuffle());
-// Gallery images now use the same explicit card navigation as the other sections.
+desktopGalleryQuery.addEventListener('change',startGalleryShuffle);
+startGalleryShuffle();
 
 // Compact card navigation is shared across desktop, tablet and mobile.
 ['.gallery-grid','.classes-grid','.career-paths','.approach-grid','.results-grid','.batch-grid','.resource-grid','.notice-list','.feedback-grid'].forEach(selector=>{
@@ -486,13 +487,18 @@ document.addEventListener('visibilitychange',()=>document.hidden?stopGalleryShuf
   controls.append(autoplayButton);
   function restartAutoplay(){
     clearInterval(timer);
-    if(expanded||paused||!visible||document.hidden||track.contains(document.activeElement))return;
+    if(selector==='.gallery-grid'&&desktopCards.matches)return;
+    const bounds=shell.getBoundingClientRect();
+    const onScreen=bounds.bottom>84&&bounds.top<window.innerHeight;
+    if(expanded||paused||!onScreen||document.hidden||track.contains(document.activeElement))return;
     if(pageCount()<2)return;
     timer=setInterval(()=>advance(1),5000);
   }
   function render(){
     const available=cards.filter(card=>!card.hidden);
-    const showAll=expanded;
+    const desktopGallery=selector==='.gallery-grid'&&desktopCards.matches;
+    const showAll=expanded||desktopGallery;
+    controls.hidden=desktopGallery;
     index=Math.min(index,Math.max(0,pageCount()-1));
     const pageCards=available.slice(index*pageSize(),(index+1)*pageSize());
     cards.forEach(card=>{
