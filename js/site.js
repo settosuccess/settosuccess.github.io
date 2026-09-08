@@ -71,6 +71,40 @@ aboutSummary.innerHTML=`
   <div><span data-en="Our purpose" data-hi="हमारा उद्देश्य">${language==='hi'?'हमारा उद्देश्य':'Our purpose'}</span><p data-en="Clear concepts, responsible learning and confidence that lasts beyond exams." data-hi="स्पष्ट अवधारणाएँ, जिम्मेदार सीख और ऐसा आत्मविश्वास जो परीक्षा के बाद भी साथ रहे।">${language==='hi'?'स्पष्ट अवधारणाएँ, जिम्मेदार सीख और ऐसा आत्मविश्वास जो परीक्षा के बाद भी साथ रहे।':'Clear concepts, responsible learning and confidence that lasts beyond exams.'}</p></div>
   <div><span data-en="Learning rhythm" data-hi="सीखने का तरीका">${language==='hi'?'सीखने का तरीका':'Learning rhythm'}</span><p data-en="Understand → Practise → Reflect → Move forward" data-hi="समझें → अभ्यास करें → विचार करें → आगे बढ़ें">${language==='hi'?'समझें → अभ्यास करें → विचार करें → आगे बढ़ें':'Understand → Practise → Reflect → Move forward'}</p></div>`;
 document.querySelector('.intro-copy').appendChild(aboutSummary);
+const typingNote=document.createElement('div');
+typingNote.className='about-typing';
+typingNote.innerHTML='<p class="typing-label" data-en="One question can change everything." data-hi="एक सवाल नई राह खोल सकता है।"></p><p class="typing-line" aria-hidden="true"><span></span><i></i></p><span class="typing-accessible"></span>';
+document.querySelector('#about .section-heading').appendChild(typingNote);
+const typingLines={en:['Ask freely. Learn deeply.','Small steps. Strong foundations.','Grow with confidence.'],hi:['खुलकर पूछें। गहराई से सीखें।','छोटे कदम। मज़बूत नींव।','आत्मविश्वास के साथ आगे बढ़ें।']};
+const typingMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
+let typingTimer,typingVisible=false;
+function resetTyping(){
+  clearTimeout(typingTimer);
+  const lines=typingLines[language];
+  typingNote.querySelector('.typing-label').textContent=typingNote.querySelector('.typing-label').dataset[language];
+  typingNote.querySelector('.typing-accessible').textContent=lines.join(' ');
+  const output=typingNote.querySelector('.typing-line span');
+  output.textContent=lines[0];
+  if(typingMotion.matches||!typingVisible||document.hidden)return;
+  let line=0,position=0,erasing=false;
+  const segments=text=>typeof Intl.Segmenter==='function'?[...new Intl.Segmenter(language,{granularity:'grapheme'}).segment(text)].map(part=>part.segment):Array.from(text);
+  function tick(){
+    const letters=segments(lines[line]);
+    position+=erasing?-1:1;
+    output.textContent=letters.slice(0,position).join('');
+    let delay=erasing?40:85;
+    if(position===letters.length&&!erasing){erasing=true;delay=2200}
+    else if(position===0&&erasing){erasing=false;line=(line+1)%lines.length;delay=350}
+    typingTimer=setTimeout(tick,delay);
+  }
+  output.textContent='';
+  tick();
+}
+languageButton.addEventListener('click',resetTyping);
+typingMotion.addEventListener('change',resetTyping);
+document.addEventListener('visibilitychange',resetTyping);
+new IntersectionObserver(entries=>{typingVisible=entries[0].isIntersecting;resetTyping()},{threshold:.15}).observe(typingNote);
+resetTyping();
 document.querySelector('.story').remove();
 
 const classesNavLink=document.createElement('a');
@@ -203,7 +237,7 @@ admissionSection.innerHTML=`
         <label><span data-en="Class" data-hi="कक्षा">${language==='hi'?'कक्षा':'Class'}</span><select name="studentClass" required><option value="" disabled selected data-en="Select class" data-hi="कक्षा चुनें">${language==='hi'?'कक्षा चुनें':'Select class'}</option><option>8th</option><option>9th</option><option>10th</option><option>11th</option><option>12th</option></select></label>
         <label><span data-en="Board" data-hi="बोर्ड">${language==='hi'?'बोर्ड':'Board'}</span><select name="board" required><option value="" disabled selected data-en="Select board" data-hi="बोर्ड चुनें">${language==='hi'?'बोर्ड चुनें':'Select board'}</option><option>CBSE</option><option>Bihar Board</option></select></label>
       </div>
-      <label><span data-en="Phone number" data-hi="फोन नंबर">${language==='hi'?'फोन नंबर':'Phone number'}</span><input type="tel" name="phone" autocomplete="tel" inputmode="numeric" required minlength="10" maxlength="15" placeholder="10-digit mobile number"></label>
+      <label><span data-en="Phone number" data-hi="फोन नंबर">${language==='hi'?'फोन नंबर':'Phone number'}</span><input type="tel" name="phone" autocomplete="tel-national" inputmode="numeric" required minlength="10" maxlength="10" pattern="[6-9][0-9]{9}" placeholder="9876543210" aria-describedby="phone-help phone-error"><small id="phone-help" data-en="10 digits, starting with 6, 7, 8 or 9. Do not include +91." data-hi="10 अंक, शुरुआत 6, 7, 8 या 9 से। +91 न जोड़ें।">${language==='hi'?'10 अंक, शुरुआत 6, 7, 8 या 9 से। +91 न जोड़ें।':'10 digits, starting with 6, 7, 8 or 9. Do not include +91.'}</small><small id="phone-error" class="phone-error" aria-live="polite"></small></label>
       <button class="button admission-submit" type="submit"><span data-en="Continue on WhatsApp" data-hi="WhatsApp पर आगे बढ़ें">${language==='hi'?'WhatsApp पर आगे बढ़ें':'Continue on WhatsApp'}</span><i aria-hidden="true">↗</i></button>
       <p class="form-privacy" data-en="Nothing is sent until you review and send the message in WhatsApp." data-hi="जब तक आप WhatsApp में संदेश देखकर भेजते नहीं हैं, कोई जानकारी साझा नहीं होगी।">${language==='hi'?'जब तक आप WhatsApp में संदेश देखकर भेजते नहीं हैं, कोई जानकारी साझा नहीं होगी।':'Nothing is sent until you review and send the message in WhatsApp.'}</p>
       <p class="form-status" role="status" aria-live="polite"></p>
@@ -212,14 +246,25 @@ admissionSection.innerHTML=`
 careerSection.after(admissionSection);
 
 const admissionForm=admissionSection.querySelector('#admission-form');
+const phoneInput=admissionForm.elements.phone;
+function validatePhone(showError=false){
+  const valid=/^[6-9][0-9]{9}$/.test(phoneInput.value);
+  const message=language==='hi'?'6–9 से शुरू होने वाला 10 अंकों का मोबाइल नंबर दर्ज करें।':'Enter a 10-digit mobile number starting with 6–9.';
+  phoneInput.setCustomValidity(valid?'':message);
+  phoneInput.setAttribute('aria-invalid',String(showError&&!valid));
+  document.getElementById('phone-error').textContent=showError&&!valid?message:'';
+  return valid;
+}
+phoneInput.addEventListener('input',()=>validatePhone(false));
+phoneInput.addEventListener('blur',()=>validatePhone(phoneInput.value.length>0));
+phoneInput.addEventListener('invalid',()=>validatePhone(true));
 admissionForm.addEventListener('submit',event=>{
   event.preventDefault();
   const formData=new FormData(admissionForm);
-  const phone=String(formData.get('phone')).replace(/\D/g,'');
+  const phone=phoneInput.value;
   const status=admissionForm.querySelector('.form-status');
-  if(phone.length<10){
-    status.textContent=language==='hi'?'कृपया सही फोन नंबर दर्ज करें।':'Please enter a valid phone number.';
-    admissionForm.elements.phone.focus();
+  if(!validatePhone(true)){
+    phoneInput.reportValidity();
     return;
   }
   status.textContent=language==='hi'?'WhatsApp enquiry तैयार की जा रही है…':'Preparing your WhatsApp enquiry…';
@@ -228,7 +273,7 @@ admissionForm.addEventListener('submit',event=>{
     `Student name: ${formData.get('studentName')}`,
     `Class: ${formData.get('studentClass')}`,
     `Board: ${formData.get('board')}`,
-    `Phone: ${formData.get('phone')}`
+    `Phone: +91 ${phone}`
   ].join('\n');
   window.open(`https://wa.me/917631422549?text=${encodeURIComponent(message)}`,'_blank','noopener');
   status.textContent=language==='hi'?'WhatsApp खुल गया है—कृपया संदेश देखकर भेजें।':'WhatsApp opened—please review and send the message.';
@@ -275,6 +320,77 @@ supportSection.innerHTML=`
   </div>`;
 document.querySelector('.contact').before(supportSection);
 
+// Demo content is collected here so verified production entries can replace it easily.
+const extraCopy=(en,hi)=>`<span data-en="${en}" data-hi="${hi}">${language==='hi'?hi:en}</span>`;
+const extraHeading=(en,hi,description,translation)=>`<div class="extra-heading"><div><p class="extra-demo">${extraCopy('DEMO PREVIEW','डेमो प्रीव्यू')}</p><h2>${extraCopy(en,hi)}</h2></div><p>${extraCopy(description,translation)}</p></div>`;
+const studentHub=document.createElement('div');
+studentHub.className='student-hub';
+studentHub.innerHTML=`
+<nav class="hub-links container" aria-label="Student information">
+  <a href="#batches">${extraCopy('Batch timings','बैच का समय')}</a><a href="#resources">${extraCopy('Study resources','अध्ययन सामग्री')}</a><a href="#teacher">${extraCopy('Meet your teacher','अपने शिक्षक से मिलें')}</a><a href="#notices">${extraCopy('Notice board','सूचना पट्ट')}</a><a href="#feedback">${extraCopy('Feedback','प्रतिक्रिया')}</a>
+</nav>
+<section class="extra-section section" id="batches"><div class="container">
+${extraHeading('Find your study hour.','अपनी पढ़ाई का समय चुनें।','Sample schedule only. Confirm actual batch availability before joining.','यह नमूना समय-सारणी है। जुड़ने से पहले वास्तविक बैच की उपलब्धता पूछें।')}
+<div class="batch-grid">
+${[
+ ['8–9','Bihar Board / CBSE','4:00–5:00 PM','Mon · Wed · Fri','सोम · बुध · शुक्र'],
+ ['10','Bihar Board / CBSE','5:00–6:00 PM','Tue · Thu · Sat','मंगल · गुरु · शनि'],
+ ['11–12','Mathematics only','6:00–7:00 PM','Mon · Wed · Fri','सोम · बुध · शुक्र'],
+ ['8','CBSE','7:00–8:00 AM','Tue · Thu · Sat','मंगल · गुरु · शनि'],
+ ['9','Bihar Board','8:00–9:00 AM','Mon · Wed · Fri','सोम · बुध · शुक्र'],
+ ['12','Mathematics only','7:00–8:00 PM','Tue · Thu · Sat','मंगल · गुरु · शनि']
+].map(([cls,board,time,en,hi])=>`<article class="extra-card"><p class="extra-kicker">${extraCopy('Sample batch','नमूना बैच')}</p><h3>${extraCopy('Class','कक्षा')} ${cls}</h3><p>${board==='Mathematics only'?extraCopy(board,'केवल गणित'):board}</p><strong class="batch-time">${time}</strong><p>${extraCopy(en,hi)}</p><a class="extra-link" href="#admission">${extraCopy('Enquire about this class →','इस कक्षा के बारे में पूछें →')}</a></article>`).join('')}
+</div></div></section>
+<section class="extra-section section" id="resources"><div class="container">
+${extraHeading('A little practice, every day.','हर दिन थोड़ा अभ्यास।','Download short sample Maths sheets. Full class notes will be added here.','गणित की छोटी नमूना शीट डाउनलोड करें। पूरी कक्षा के नोट्स यहाँ जोड़े जाएँगे।')}
+<div class="resource-grid">
+${[
+ ['8–9','Algebra warm-up','बीजगणित अभ्यास','algebra'],
+ ['10','Quadratic equations','द्विघात समीकरण','quadratics'],
+ ['11–12','Functions & derivatives','फलन एवं अवकलज','calculus'],
+ ['8–9','Geometry basics','ज्यामिति की नींव','geometry'],
+ ['10','Trigonometry revision','त्रिकोणमिति दोहराव','trigonometry'],
+ ['11–12','Probability practice','प्रायिकता अभ्यास','probability']
+].map(([cls,en,hi,key])=>`<article class="extra-card resource-card"><span class="resource-format">TXT · ${extraCopy('Sample','नमूना')}</span><p class="extra-kicker">${extraCopy('Classes','कक्षाएँ')} ${cls}</p><h3>${extraCopy(en,hi)}</h3><p>${extraCopy('Quick reference, practice questions and answers.','संक्षिप्त सूत्र, अभ्यास प्रश्न और उत्तर।')}</p><a class="extra-link resource-download" data-resource="${key}">${extraCopy('Download sample ↓','नमूना डाउनलोड करें ↓')}</a></article>`).join('')}
+</div></div></section>
+<section class="extra-section section" id="teacher"><div class="container teacher-layout">
+<div class="teacher-placeholder"><span aria-hidden="true">SKS</span><p>${extraCopy('Teacher photo to be added','शिक्षक की फोटो यहाँ आएगी')}</p></div>
+<div>${extraHeading('Meet your teacher.','अपने शिक्षक से मिलें।','Profile preview — qualification and experience details are pending confirmation.','प्रोफाइल प्रीव्यू — योग्यता और अनुभव की जानकारी की पुष्टि बाकी है।')}<h3 class="teacher-name">Saurabh Kumar Singh</h3><p>${extraCopy('Founder & Mentor · Set to Success','संस्थापक एवं मार्गदर्शक · Set to Success')}</p><dl class="teacher-facts"><div><dt>${extraCopy('Teaching focus','शिक्षण का केंद्र')}</dt><dd>${extraCopy('Mathematics · clear concepts and practice','गणित · स्पष्ट अवधारणाएँ और अभ्यास')}</dd></div><div><dt>${extraCopy('Qualification','योग्यता')}</dt><dd>${extraCopy('Verified details coming soon','सत्यापित जानकारी जल्द आएगी')}</dd></div><div><dt>${extraCopy('Experience','अनुभव')}</dt><dd>${extraCopy('Verified details coming soon','सत्यापित जानकारी जल्द आएगी')}</dd></div></dl><a class="extra-link" href="#admission">${extraCopy('Discuss your learning needs →','अपनी पढ़ाई की जरूरतों पर बात करें →')}</a></div>
+</div></section>
+<section class="extra-section section" id="notices"><div class="container">
+${extraHeading('From the notice board.','सूचना पट्ट से।','Illustrative announcements only — these are not active schedules or instructions.','ये केवल नमूना सूचनाएँ हैं — वास्तविक समय-सारणी या निर्देश नहीं।')}
+<div class="notice-list">
+${[
+ ['01','New batch enquiry','नए बैच की जानकारी','Class 10 batch details will appear here once dates and timings are confirmed.','तारीख और समय तय होने पर कक्षा 10 के बैच की जानकारी यहाँ आएगी।'],
+ ['02','Practice test update','अभ्यास परीक्षा की सूचना','Upcoming test topics, timing and preparation notes will be shared here.','आगामी परीक्षा के विषय, समय और तैयारी के नोट्स यहाँ साझा होंगे।'],
+ ['03','Holiday & class updates','अवकाश एवं कक्षा अपडेट','Confirmed holidays and any rescheduled classes will be listed here.','तय अवकाश और बदली हुई कक्षाओं का समय यहाँ दिया जाएगा।']
+].map(([n,en,hi,body,translation])=>`<article class="notice-item"><span class="notice-number">${n}</span><div><p class="extra-kicker">${extraCopy('Demo notice · date pending','डेमो सूचना · तारीख तय नहीं')}</p><h3>${extraCopy(en,hi)}</h3><p>${extraCopy(body,translation)}</p></div></article>`).join('')}
+</div></div></section>
+<section class="extra-section section" id="feedback"><div class="container">
+${extraHeading('Learning, in their words.','पढ़ाई के बारे में उनकी राय।','Fictional feedback for layout preview. Replace with genuine, permission-approved feedback before publishing.','ये डिज़ाइन के लिए काल्पनिक प्रतिक्रियाएँ हैं। प्रकाशित करने से पहले अनुमति प्राप्त वास्तविक प्रतिक्रिया लगाएँ।')}
+<div class="feedback-grid">
+${[
+ ['Demo student A','डेमो छात्र A','I feel more comfortable asking questions and practising on my own.','अब मैं सवाल पूछने और स्वयं अभ्यास करने में अधिक सहज महसूस करता हूँ।'],
+ ['Demo parent B','डेमो अभिभावक B','A regular study routine makes it easier to support learning at home.','नियमित पढ़ाई से घर पर बच्चे की पढ़ाई में सहयोग करना आसान होता है।'],
+ ['Demo student C','डेमो छात्र C','Working through mistakes helps me understand the next question better.','गलतियों को समझने से अगला प्रश्न बेहतर तरीके से हल कर पाता हूँ।'],
+ ['Demo student D','डेमो छात्र D','Short revision exercises help me remember the main ideas.','छोटे दोहराव अभ्यास से मुख्य बातें याद रखने में मदद मिलती है।'],
+ ['Demo parent E','डेमो अभिभावक E','Discussing questions together makes study time more meaningful.','सवालों पर साथ चर्चा करने से पढ़ाई का समय अधिक उपयोगी बनता है।'],
+ ['Demo student F','डेमो छात्र F','Breaking a difficult problem into steps makes it less confusing.','कठिन प्रश्न को छोटे चरणों में बाँटने से उलझन कम होती है।']
+].map(([en,hi,quote,translation])=>`<figure class="extra-card feedback-card"><p class="extra-kicker">${extraCopy('Fictional sample','काल्पनिक नमूना')}</p><blockquote>${extraCopy(quote,translation)}</blockquote><figcaption>${extraCopy(en,hi)}</figcaption></figure>`).join('')}
+</div></div></section>`;
+admissionSection.after(studentHub);
+const sampleSheets={
+  geometry:'SET TO SUCCESS — DEMO SHEET\nGeometry / ज्यामिति\nTriangle angles total 180 degrees.\nQuestion: Two angles are 50 and 60 degrees. Find the third.\nAnswer: 70 degrees.\nप्रश्न: दो कोण 50 और 60 डिग्री हैं। तीसरा कोण? उत्तर: 70 डिग्री।',
+  trigonometry:'SET TO SUCCESS — DEMO SHEET\nTrigonometry / त्रिकोणमिति\nsin^2(theta) + cos^2(theta) = 1\nFor an acute angle with sin(theta)=3/5, cos(theta)=4/5.\nन्यून कोण के लिए sin(theta)=3/5 हो तो cos(theta)=4/5 होगा।',
+  probability:'SET TO SUCCESS — DEMO SHEET\nProbability / प्रायिकता\nFor equally likely outcomes, P(A)=favourable outcomes / total outcomes.\nA fair die: probability of an even number = 3/6 = 1/2.\nनिष्पक्ष पासे पर सम संख्या आने की प्रायिकता 1/2 है।',
+  algebra:'SET TO SUCCESS — SAMPLE STUDY SHEET\nClasses 8–9: Algebra warm-up\n\nIdentity: (a+b)^2 = a^2 + 2ab + b^2\nPractice: Expand (x+3)^2. Solve 3x+6=21.\nAnswers: x^2+6x+9; x=5.\n\nडेमो अभ्यास: (x+3)^2 का विस्तार करें। 3x+6=21 हल करें।\nThis short sample is not a complete syllabus.',
+  quadratics:'SET TO SUCCESS — SAMPLE STUDY SHEET\nClass 10: Quadratic equations\n\nFor ax^2+bx+c=0, a != 0: x=(-b ± sqrt(b^2-4ac))/(2a).\nPractice: Solve x^2-5x+6=0.\nAnswer: x=2 or x=3.\n\nडेमो अभ्यास: x^2-5x+6=0 के मूल ज्ञात करें। उत्तर: 2 और 3।\nThis short sample is not a complete syllabus.',
+  calculus:'SET TO SUCCESS — SAMPLE STUDY SHEET\nClasses 11–12: Functions & derivatives\n\nIf f(x)=x^2+1, then f(3)=10.\nPower rule (positive integer n): d(x^n)/dx = n*x^(n-1).\nPractice: Differentiate x^3+2x.\nAnswer: 3x^2+2.\n\nडेमो अभ्यास: x^3+2x का अवकलज निकालें। उत्तर: 3x^2+2।\nThis short sample is not a complete syllabus.'
+};
+studentHub.querySelectorAll('.resource-download').forEach(link=>{
+  link.href=URL.createObjectURL(new Blob([sampleSheets[link.dataset.resource]],{type:'text/plain;charset=utf-8'}));
+  link.download=`set-to-success-sample-${link.dataset.resource}.txt`;
+});
 document.getElementById('year').textContent=new Date().getFullYear();
 const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{
   if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}
@@ -300,7 +416,7 @@ const galleryItems=[...document.querySelectorAll('.gallery-item')];
 const featuredItem=document.querySelector('.gallery-featured');
 const mobileCarouselQuery=window.matchMedia('(max-width: 650px)');
 function selectGalleryItem(item){
-  if(mobileCarouselQuery.matches)return;
+  if(item.closest('.compact-list'))return;
   if(item===featuredItem)return;
   const mainImage=featuredItem.querySelector('img');
   const selectedImage=item.querySelector('img');
@@ -321,6 +437,7 @@ const motionReduced=window.matchMedia('(prefers-reduced-motion: reduce)').matche
 function stopGalleryShuffle(){clearInterval(galleryTimer)}
 function startGalleryShuffle(){
   stopGalleryShuffle();
+  if(featuredItem.closest('.compact-list'))return;
   if(motionReduced||mobileCarouselQuery.matches||document.hidden)return;
   galleryTimer=setInterval(()=>{
     selectGalleryItem(galleryItems[galleryStep]);
@@ -340,68 +457,74 @@ galleryGrid.addEventListener('mouseleave',startGalleryShuffle);
 galleryGrid.addEventListener('focusin',stopGalleryShuffle);
 galleryGrid.addEventListener('focusout',event=>{if(!galleryGrid.contains(event.relatedTarget))startGalleryShuffle()});
 document.addEventListener('visibilitychange',()=>document.hidden?stopGalleryShuffle():startGalleryShuffle());
-startGalleryShuffle();
+// Gallery images now use the same explicit card navigation as the other sections.
 
-// Mobile tracks use native scrolling so touch swipes and arrow buttons stay in sync.
-mobileCarouselQuery.addEventListener('change',startGalleryShuffle);
-['.gallery-grid','.classes-grid','.career-paths'].forEach(selector=>{
+// Compact card navigation is shared across desktop, tablet and mobile.
+['.gallery-grid','.classes-grid','.career-paths','.approach-grid','.results-grid','.batch-grid','.resource-grid','.notice-list','.feedback-grid'].forEach(selector=>{
   const track=document.querySelector(selector);
-  const slides=[...track.children];
+  const cards=[...track.children];
   const shell=document.createElement('div');
-  shell.className='mobile-carousel';
+  shell.className='compact-shell';
   track.before(shell);
-  shell.appendChild(track);
-  track.classList.add('carousel-track');
+  shell.append(track);
+  track.classList.add('compact-list');
   const controls=document.createElement('div');
-  controls.className='carousel-controls';
-  controls.innerHTML='<button type="button" class="carousel-prev" aria-label="Previous slide">←</button><span class="carousel-count"></span><button type="button" class="carousel-pause" aria-label="Pause automatic slides">Ⅱ</button><button type="button" class="carousel-next" aria-label="Next slide">→</button>';
-  shell.appendChild(controls);
-  const count=controls.querySelector('.carousel-count');
-  const pause=controls.querySelector('.carousel-pause');
-  let index=0,timer,visible=false,paused=false,touching=false;
-  const reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
-  function update(){
-    count.textContent=`${index+1} / ${slides.length}`;
-    slides.forEach((slide,i)=>{
-      slide.inert=mobileCarouselQuery.matches&&i!==index;
-      if(mobileCarouselQuery.matches)slide.classList.add('visible');
-    });
-  }
-  function move(step){
-    index=(index+step+slides.length)%slides.length;
-    track.scrollTo({left:index*(track.clientWidth+16),behavior:reduced.matches?'instant':'smooth'});
-    update();
-  }
-  function restart(){
+  controls.className='compact-controls';
+  controls.innerHTML='<button type="button" aria-label="Previous card">←</button><span class="compact-count"></span><button type="button" aria-label="Next card">→</button><button type="button" class="compact-toggle"></button>';
+  shell.append(controls);
+  const buttons=controls.querySelectorAll('button');
+  let index=0,expanded=false,timer,visible=false;
+  const desktopCards=window.matchMedia('(min-width: 961px)');
+  const pageSize=()=>desktopCards.matches?3:1;
+  const pageCount=()=>Math.ceil(cards.filter(card=>!card.hidden).length/pageSize());
+  function advance(step){index=(index+step+pageCount())%pageCount();render()}
+  const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
+  let paused=reducedMotion.matches;
+  const autoplayButton=document.createElement('button');
+  autoplayButton.type='button';
+  autoplayButton.className='compact-play';
+  controls.append(autoplayButton);
+  function restartAutoplay(){
     clearInterval(timer);
-    if(!mobileCarouselQuery.matches||!visible||paused||touching||reduced.matches||document.hidden||track.contains(document.activeElement))return;
-    timer=setInterval(()=>move(1),5000);
+    if(expanded||paused||!visible||document.hidden||track.contains(document.activeElement))return;
+    if(pageCount()<2)return;
+    timer=setInterval(()=>advance(1),5000);
   }
-  controls.querySelector('.carousel-prev').addEventListener('click',()=>{move(-1);restart()});
-  controls.querySelector('.carousel-next').addEventListener('click',()=>{move(1);restart()});
-  pause.addEventListener('click',()=>{
-    paused=!paused;
-    pause.textContent=paused?'▶':'Ⅱ';
-    pause.setAttribute('aria-label',paused?'Resume automatic slides':'Pause automatic slides');
-    restart();
-  });
-  track.addEventListener('scroll',()=>{
-    if(!mobileCarouselQuery.matches)return;
-    index=Math.max(0,Math.min(slides.length-1,Math.round(track.scrollLeft/(track.clientWidth+16))));
-    update();
-  },{passive:true});
-  shell.addEventListener('focusin',event=>{if(track.contains(event.target))clearInterval(timer)});
-  shell.addEventListener('focusout',event=>{if(!shell.contains(event.relatedTarget))setTimeout(restart,0)});
-  track.addEventListener('pointerdown',()=>{touching=true;clearInterval(timer)},{passive:true});
-  window.addEventListener('pointerup',()=>{if(touching){touching=false;restart()}},{passive:true});
-  track.addEventListener('pointercancel',()=>{touching=false;restart()},{passive:true});
-  const visibility=new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;restart()},{threshold:.3});
-  visibility.observe(shell);
-  function reset(){index=0;track.scrollTo({left:0,behavior:'instant'});update();restart()}
-  mobileCarouselQuery.addEventListener('change',reset);
-  reduced.addEventListener('change',restart);
-  document.addEventListener('visibilitychange',restart);
-  update();
+  function render(){
+    const available=cards.filter(card=>!card.hidden);
+    const showAll=expanded;
+    index=Math.min(index,Math.max(0,pageCount()-1));
+    const pageCards=available.slice(index*pageSize(),(index+1)*pageSize());
+    cards.forEach(card=>{
+      const concealed=!showAll&&!pageCards.includes(card);
+      card.classList.toggle('compact-hidden',concealed);
+      card.inert=concealed||card.hidden;
+      card.classList.add('visible');
+    });
+    track.classList.toggle('compact-expanded',showAll);
+    cards.forEach(card=>card.classList.toggle('compact-enter',!showAll&&pageCards.includes(card)));
+    controls.querySelector('.compact-count').textContent=expanded?String(available.length):`${index*pageSize()+1}${pageSize()>1?'–'+Math.min((index+1)*pageSize(),available.length):''} / ${available.length}`;
+    buttons[0].hidden=buttons[1].hidden=expanded||pageCount()<2;
+    buttons[2].textContent=language==='hi'?(expanded?'कम देखें':'सभी देखें'):(expanded?'View less':'View all');
+    buttons[2].setAttribute('aria-expanded',String(expanded));
+    autoplayButton.hidden=expanded||pageCount()<2;
+    autoplayButton.textContent=paused?'▶':'Ⅱ';
+    autoplayButton.setAttribute('aria-label',language==='hi'?(paused?'स्लाइड चलाएँ':'स्लाइड रोकें'):(paused?'Play slides':'Pause slides'));
+  }
+  buttons[0].addEventListener('click',()=>{advance(-1);restartAutoplay()});
+  buttons[1].addEventListener('click',()=>{advance(1);restartAutoplay()});
+  buttons[2].addEventListener('click',()=>{expanded=!expanded;render();restartAutoplay();if(!expanded)shell.scrollIntoView({block:'nearest',behavior:'auto'})});
+  autoplayButton.addEventListener('click',()=>{paused=!paused;render();restartAutoplay()});
+  track.addEventListener('focusin',()=>clearInterval(timer));
+  track.addEventListener('focusout',()=>setTimeout(restartAutoplay,0));
+  const visibilityObserver=new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;restartAutoplay()},{threshold:.3});
+  visibilityObserver.observe(shell);
+  document.addEventListener('visibilitychange',restartAutoplay);
+  reducedMotion.addEventListener('change',()=>{paused=reducedMotion.matches;render();restartAutoplay()});
+  desktopCards.addEventListener('change',()=>{index=0;render();restartAutoplay()});
+  languageButton.addEventListener('click',render);
+  if(selector==='.results-grid')resultYearButtons.forEach(button=>button.addEventListener('click',()=>{index=0;render();restartAutoplay()}));
+  render();
 });
 
 const sectionLinks=[...document.querySelectorAll('.primary-nav a[href^="#"]')];
