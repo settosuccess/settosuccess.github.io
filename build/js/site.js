@@ -22,6 +22,9 @@ nav.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{
 }));
 
 const navActions=document.querySelector('.nav-actions');
+const mobileCall=navActions.querySelector('a[href^="tel:"]').cloneNode(true);
+mobileCall.className='button mobile-call';
+document.body.appendChild(mobileCall);
 navActions.after(menuButton);
 const themeButton=document.createElement('button');
 themeButton.className='theme-button';
@@ -138,10 +141,10 @@ resultsSection.innerHTML=`
       <button class="result-year" type="button" data-year="2025" aria-pressed="false">2025</button>
     </div>
     <div class="results-grid">
-      <article class="result-card reveal" data-year="2026"><div class="result-photo"><img src="img/demo-result-ananya.png" alt="Demo portrait of Ananya Kumari wearing a face mask" loading="lazy"><span class="rank-chip"><b>#1</b><small data-en="Rank" data-hi="रैंक">${language==='hi'?'रैंक':'Rank'}</small></span></div><div class="result-info"><p class="result-board">2026 · Bihar Board · Class 10</p><h3>Ananya Kumari</h3><div class="score"><strong>96.4%</strong><span data-en="Marks" data-hi="अंक">${language==='hi'?'अंक':'Marks'}</span></div></div></article>
-      <article class="result-card reveal" data-year="2026"><div class="result-photo"><img src="img/demo-result-aryan.png" alt="Demo portrait of Aryan Raj" loading="lazy"><span class="rank-chip"><b>#2</b><small data-en="Rank" data-hi="रैंक">${language==='hi'?'रैंक':'Rank'}</small></span></div><div class="result-info"><p class="result-board">2026 · CBSE · Class 10</p><h3>Aryan Raj</h3><div class="score"><strong>94.8%</strong><span data-en="Marks" data-hi="अंक">${language==='hi'?'अंक':'Marks'}</span></div></div></article>
-      <article class="result-card reveal" data-year="2025"><div class="result-photo"><img src="img/demo-result-sakshi.png" alt="Demo portrait of Sakshi Singh wearing a face mask" loading="lazy"><span class="rank-chip"><b>#1</b><small data-en="Rank" data-hi="रैंक">${language==='hi'?'रैंक':'Rank'}</small></span></div><div class="result-info"><p class="result-board">2025 · CBSE · Class 10</p><h3>Sakshi Singh</h3><div class="score"><strong>95.6%</strong><span data-en="Marks" data-hi="अंक">${language==='hi'?'अंक':'Marks'}</span></div></div></article>
-      <article class="result-card reveal" data-year="2025"><div class="result-photo"><img src="img/demo-result-rohan.png" alt="Demo portrait of Rohan Kumar" loading="lazy"><span class="rank-chip"><b>#2</b><small data-en="Rank" data-hi="रैंक">${language==='hi'?'रैंक':'Rank'}</small></span></div><div class="result-info"><p class="result-board">2025 · Bihar Board · Class 10</p><h3>Rohan Kumar</h3><div class="score"><strong>93.2%</strong><span data-en="Marks" data-hi="अंक">${language==='hi'?'अंक':'Marks'}</span></div></div></article>
+      <article class="result-card reveal" data-year="2026"><div class="result-photo"><img src="img/demo-result-ananya.webp" alt="Demo portrait of Ananya Kumari wearing a face mask" loading="lazy"><span class="rank-chip"><b>#1</b><small data-en="Rank" data-hi="रैंक">${language==='hi'?'रैंक':'Rank'}</small></span></div><div class="result-info"><p class="result-board">2026 · Bihar Board · Class 10</p><h3>Ananya Kumari</h3><div class="score"><strong>96.4%</strong><span data-en="Marks" data-hi="अंक">${language==='hi'?'अंक':'Marks'}</span></div></div></article>
+      <article class="result-card reveal" data-year="2026"><div class="result-photo"><img src="img/demo-result-aryan.webp" alt="Demo portrait of Aryan Raj" loading="lazy"><span class="rank-chip"><b>#2</b><small data-en="Rank" data-hi="रैंक">${language==='hi'?'रैंक':'Rank'}</small></span></div><div class="result-info"><p class="result-board">2026 · CBSE · Class 10</p><h3>Aryan Raj</h3><div class="score"><strong>94.8%</strong><span data-en="Marks" data-hi="अंक">${language==='hi'?'अंक':'Marks'}</span></div></div></article>
+      <article class="result-card reveal" data-year="2025"><div class="result-photo"><img src="img/demo-result-sakshi.webp" alt="Demo portrait of Sakshi Singh wearing a face mask" loading="lazy"><span class="rank-chip"><b>#1</b><small data-en="Rank" data-hi="रैंक">${language==='hi'?'रैंक':'Rank'}</small></span></div><div class="result-info"><p class="result-board">2025 · CBSE · Class 10</p><h3>Sakshi Singh</h3><div class="score"><strong>95.6%</strong><span data-en="Marks" data-hi="अंक">${language==='hi'?'अंक':'Marks'}</span></div></div></article>
+      <article class="result-card reveal" data-year="2025"><div class="result-photo"><img src="img/demo-result-rohan.webp" alt="Demo portrait of Rohan Kumar" loading="lazy"><span class="rank-chip"><b>#2</b><small data-en="Rank" data-hi="रैंक">${language==='hi'?'रैंक':'Rank'}</small></span></div><div class="result-info"><p class="result-board">2025 · Bihar Board · Class 10</p><h3>Rohan Kumar</h3><div class="score"><strong>93.2%</strong><span data-en="Marks" data-hi="अंक">${language==='hi'?'अंक':'Marks'}</span></div></div></article>
     </div>
     <p class="result-disclaimer reveal" data-en="Demo notice: These are fictional sample entries for design preview. Replace them with verified student results before publishing." data-hi="डेमो सूचना: ये केवल डिज़ाइन दिखाने के लिए काल्पनिक नमूना प्रविष्टियाँ हैं। प्रकाशित करने से पहले इन्हें सत्यापित छात्र परिणामों से बदलें।">${language==='hi'?'डेमो सूचना: ये केवल डिज़ाइन दिखाने के लिए काल्पनिक नमूना प्रविष्टियाँ हैं। प्रकाशित करने से पहले इन्हें सत्यापित छात्र परिणामों से बदलें।':'Demo notice: These are fictional sample entries for design preview. Replace them with verified student results before publishing.'}</p>
   </div>`;
@@ -242,8 +245,8 @@ classroomSection.innerHTML=`
       <p data-en="Clear explanation, curious questions and active participation turn every lesson into meaningful progress." data-hi="स्पष्ट समझ, जिज्ञासु सवाल और सक्रिय भागीदारी हर पाठ को सार्थक प्रगति में बदलते हैं।">${language==='hi'?'स्पष्ट समझ, जिज्ञासु सवाल और सक्रिय भागीदारी हर पाठ को सार्थक प्रगति में बदलते हैं।':'Clear explanation, curious questions and active participation turn every lesson into meaningful progress.'}</p>
     </div>
     <div class="classroom-art reveal">
-      <img class="classroom-frame frame-one" src="img/teacher-classroom-illustration.png" alt="Illustration of a teacher explaining geometry to students" loading="lazy">
-      <img class="classroom-frame frame-two" src="img/teacher-classroom-frame-2.png" alt="" loading="lazy" aria-hidden="true">
+      <img class="classroom-frame frame-one" src="img/teacher-classroom-illustration.webp" alt="Illustration of a teacher explaining geometry to students" loading="lazy">
+      <img class="classroom-frame frame-two" src="img/teacher-classroom-frame-2.webp" alt="" loading="lazy" aria-hidden="true">
       <div class="lesson-live" aria-hidden="true"><i></i><span data-en="Lesson in progress" data-hi="कक्षा जारी है">${language==='hi'?'कक्षा जारी है':'Lesson in progress'}</span></div>
       <svg class="chalk-motion" viewBox="0 0 100 56" aria-hidden="true">
         <path class="chalk-line line-a" d="M51 10 L41 31"/>
@@ -371,7 +374,7 @@ mobileCarouselQuery.addEventListener('change',startGalleryShuffle);
   }
   function restart(){
     clearInterval(timer);
-    if(!mobileCarouselQuery.matches||!visible||paused||touching||reduced.matches||document.hidden||shell.contains(document.activeElement))return;
+    if(!mobileCarouselQuery.matches||!visible||paused||touching||reduced.matches||document.hidden||track.contains(document.activeElement))return;
     timer=setInterval(()=>move(1),5000);
   }
   controls.querySelector('.carousel-prev').addEventListener('click',()=>{move(-1);restart()});
@@ -387,7 +390,7 @@ mobileCarouselQuery.addEventListener('change',startGalleryShuffle);
     index=Math.max(0,Math.min(slides.length-1,Math.round(track.scrollLeft/(track.clientWidth+16))));
     update();
   },{passive:true});
-  shell.addEventListener('focusin',()=>clearInterval(timer));
+  shell.addEventListener('focusin',event=>{if(track.contains(event.target))clearInterval(timer)});
   shell.addEventListener('focusout',event=>{if(!shell.contains(event.relatedTarget))setTimeout(restart,0)});
   track.addEventListener('pointerdown',()=>{touching=true;clearInterval(timer)},{passive:true});
   window.addEventListener('pointerup',()=>{if(touching){touching=false;restart()}},{passive:true});

@@ -166,8 +166,9 @@ html[data-theme="dark"] .admission-form{background:#0b2632}.admission-section,.a
   .floating-top{right:16px;bottom:16px}
 }
 @media(max-width:370px){.brand span{display:none}.language-button span{padding:4px 5px}}
-.mobile-carousel{min-width:0}
+.mobile-carousel{min-width:0;position:relative}
 .carousel-controls{display:none}
+.mobile-call{display:none}
 @media(max-width:650px){
   .mobile-carousel .carousel-track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain;grid-template-rows:none;padding:0;align-items:stretch}
   .carousel-track::-webkit-scrollbar{display:none}
@@ -175,12 +176,17 @@ html[data-theme="dark"] .admission-form{background:#0b2632}.admission-section,.a
   .mobile-carousel .gallery-item{height:330px;box-shadow:none}
   .mobile-carousel .gallery-item::before{display:none}
   .mobile-carousel .gallery-item img{transform:none}
-  .carousel-controls{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:16px}
+  .carousel-controls{position:absolute;z-index:4;inset:auto 12px 12px;display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0;pointer-events:none}
+  .carousel-controls>*{pointer-events:auto}
+  .mobile-carousel .class-card,.mobile-carousel .career-card{padding-bottom:80px}
+  .mobile-carousel .gallery-item figcaption{bottom:72px;left:20px;right:20px}
   .carousel-controls button{display:grid;place-items:center;width:44px;height:44px;flex-shrink:0;border:1px solid var(--line);border-radius:50%;background:var(--paper);color:var(--ink);cursor:pointer;font-size:22px}
   .carousel-controls .carousel-next,.carousel-controls .carousel-prev{background:var(--gold);color:#081e2c}
   .carousel-controls button:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
-  .carousel-count{flex:1;text-align:center;font-size:14px;font-weight:700;color:var(--muted)}
+  .carousel-count{margin-left:auto;padding:6px 12px;border-radius:99px;text-align:center;font-size:14px;font-weight:700;background:#081e2ce6;color:#fff}
   .carousel-controls .carousel-pause{font-size:16px}
+  .mobile-call{display:inline-flex;position:fixed;z-index:45;left:14px;bottom:max(16px,env(safe-area-inset-bottom));min-height:44px;padding:0 20px;background:var(--gold);color:#081e2c;box-shadow:0 4px 20px #0003}
+  body{padding-bottom:76px}
 }
 @media(max-width:650px){.about-summary{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){.visual-orbit,.logo-card,.floating-card,.hero-stripe,.classroom-art img,.classroom-art::after,.learning-symbol,.teaching-pulse,.chalk-line,.lesson-live i{animation:none}.frame-one{opacity:1}.frame-two{opacity:0}.chalk-motion{display:none}.theme-button,.floating-top{transition:none}}
