@@ -5,6 +5,26 @@ document.head.appendChild(themeStyles);
 const heroLogo=document.querySelector('.logo-card img');
 heroLogo.src='img/set-to-success-logo.svg';
 heroLogo.alt='Set to Success Study Centre — learning and progress logo';
+const heroQuickbar=document.createElement('div');
+heroQuickbar.className='hero-quickbar';
+heroQuickbar.setAttribute('aria-label','Course highlights');
+heroQuickbar.innerHTML=`<div class="hero-quickbar-track">
+  <span><i aria-hidden="true">✦</i><b data-en="Classes 8–10" data-hi="कक्षा 8–10">Classes 8–10</b><small data-en="Bihar Board & CBSE" data-hi="बिहार बोर्ड और CBSE">Bihar Board & CBSE</small></span>
+  <span><i aria-hidden="true">∑</i><b data-en="Classes 11–12" data-hi="कक्षा 11–12">Classes 11–12</b><small data-en="Mathematics only" data-hi="केवल गणित">Mathematics only</small></span>
+  <span><i aria-hidden="true">⌖</i><b data-en="Hajipur, Bihar" data-hi="हाजीपुर, बिहार">Hajipur, Bihar</b><small data-en="Focused learning space" data-hi="केंद्रित शिक्षण स्थान">Focused learning space</small></span>
+</div>`;
+document.querySelector('.site-header').after(heroQuickbar);
+const syncStickyOffsets=()=>{
+  document.documentElement.style.setProperty('--sticky-header-height',`${document.querySelector('.site-header').offsetHeight}px`);
+  document.documentElement.style.setProperty('--sticky-quickbar-height',`${heroQuickbar.offsetHeight}px`);
+};
+requestAnimationFrame(syncStickyOffsets);
+window.addEventListener('resize',syncStickyOffsets,{passive:true});
+const heroMathMotion=document.createElement('div');
+heroMathMotion.className='hero-math-motion';
+heroMathMotion.setAttribute('aria-hidden','true');
+heroMathMotion.innerHTML='<div class="math-orbit-ring"><span class="math-core"><img src="img/brand-mark.svg" alt=""></span><span class="math-symbol math-pi">π</span><span class="math-symbol math-sigma">Σ</span><span class="math-symbol math-square">x²</span><i></i><i></i><i></i></div><small>THINK · SOLVE · SUCCEED</small>';
+document.querySelector('.hero h1').after(heroMathMotion);
 
 const menuButton=document.querySelector('.menu-button');
 const nav=document.querySelector('.primary-nav');
@@ -53,6 +73,7 @@ function setLanguage(next){
   languageButton.children[1].classList.toggle('active',next==='hi');
   languageButton.setAttribute('aria-label',next==='en'?'हिंदी में देखें':'View in English');
   localStorage.setItem('sts-language',next);
+  requestAnimationFrame(syncStickyOffsets);
 }
 languageButton.addEventListener('click',()=>setLanguage(language==='en'?'hi':'en'));
 setLanguage(language);
@@ -65,6 +86,23 @@ heroEnquiry.dataset.en='Book a demo class';
 heroEnquiry.dataset.hi='डेमो क्लास बुक करें';
 heroEnquiry.textContent=language==='hi'?'डेमो क्लास बुक करें':'Book a demo class';
 
+const approachMotion=document.createElement('div');
+approachMotion.className='approach-progress-motion';
+approachMotion.setAttribute('aria-hidden','true');
+approachMotion.innerHTML=`<div class="approach-progress-rail"><i class="walking-student"><span class="student-walk">🚶‍♂️</span></i>
+  <span><b>01</b><small data-en="Understand" data-hi="समझें">${language==='hi'?'समझें':'Understand'}</small></span>
+  <span><b>02</b><small data-en="Practise" data-hi="अभ्यास">${language==='hi'?'अभ्यास':'Practise'}</small></span>
+  <span><b>03</b><small data-en="Progress" data-hi="प्रगति">${language==='hi'?'प्रगति':'Progress'}</small></span>
+</div>`;
+document.querySelector('.approach .section-heading').after(approachMotion);
+
+const heroPromise=document.createElement('p');
+heroPromise.className='hero-promise';
+heroPromise.dataset.en='Small batches · Clear concepts · Personal attention';
+heroPromise.dataset.hi='छोटे बैच · स्पष्ट समझ · व्यक्तिगत ध्यान';
+heroPromise.textContent=language==='hi'?heroPromise.dataset.hi:heroPromise.dataset.en;
+document.querySelector('.hero-text').after(heroPromise);
+
 const aboutSummary=document.createElement('div');
 aboutSummary.className='about-summary';
 aboutSummary.innerHTML=`
@@ -75,6 +113,14 @@ const typingNote=document.createElement('div');
 typingNote.className='about-typing';
 typingNote.innerHTML='<p class="typing-label" data-en="One question can change everything." data-hi="एक सवाल नई राह खोल सकता है।"></p><p class="typing-line" aria-hidden="true"><span></span><i></i></p><span class="typing-accessible"></span>';
 document.querySelector('#about .section-heading').appendChild(typingNote);
+const aboutPoints=document.createElement('div');
+aboutPoints.className='about-learning-points';
+aboutPoints.innerHTML=`
+  <div><span aria-hidden="true">01</span><p><strong data-en="Clarity first" data-hi="पहले स्पष्टता">Clarity first</strong><small data-en="Understand the idea before memorising it." data-hi="याद करने से पहले विषय को समझें।">Understand the idea before memorising it.</small></p></div>
+  <div><span aria-hidden="true">02</span><p><strong data-en="Practice with purpose" data-hi="उद्देश्यपूर्ण अभ्यास">Practice with purpose</strong><small data-en="Use each question to strengthen the concept." data-hi="हर प्रश्न से अवधारणा को मजबूत करें।">Use each question to strengthen the concept.</small></p></div>
+  <div><span aria-hidden="true">03</span><p><strong data-en="Confidence follows" data-hi="आत्मविश्वास बढ़े">Confidence follows</strong><small data-en="Move forward by learning from mistakes." data-hi="गलतियों से सीखकर आगे बढ़ें।">Move forward by learning from mistakes.</small></p></div>`;
+aboutPoints.querySelectorAll('[data-en]').forEach(element=>element.textContent=element.dataset[language]);
+document.querySelector('#about .intro-grid').appendChild(aboutPoints);
 const typingLines={en:['Ask freely. Learn deeply.','Small steps. Strong foundations.','Grow with confidence.'],hi:['खुलकर पूछें। गहराई से सीखें।','छोटे कदम। मज़बूत नींव।','आत्मविश्वास के साथ आगे बढ़ें।']};
 const typingMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
 let typingTimer,typingVisible=false;
