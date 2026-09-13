@@ -23,8 +23,9 @@ window.addEventListener('resize',syncStickyOffsets,{passive:true});
 const heroMathMotion=document.createElement('div');
 heroMathMotion.className='hero-math-motion';
 heroMathMotion.setAttribute('aria-hidden','true');
-heroMathMotion.innerHTML='<div class="math-orbit-ring"><span class="math-core"><img src="img/brand-mark.svg" alt=""></span><span class="math-symbol math-pi">π</span><span class="math-symbol math-sigma">Σ</span><span class="math-symbol math-square">x²</span><i></i><i></i><i></i></div><small>THINK · SOLVE · SUCCEED</small>';
+heroMathMotion.innerHTML='<div class="math-orbit-ring"><svg class="brand-arc" viewBox="0 0 112 112" aria-hidden="true"><defs><path id="brandArcPath" d="M56 26a30 30 0 1 1 0 60a30 30 0 1 1 0-60"></path></defs><text><textPath href="#brandArcPath" startOffset="83%" text-anchor="middle">SET</textPath></text><text><textPath href="#brandArcPath" startOffset="17%" text-anchor="middle">TO</textPath></text><text><textPath href="#brandArcPath" startOffset="50%" text-anchor="middle">SUCCESS</textPath></text></svg><span class="math-core"><img src="img/brand-mark.svg" alt=""></span><span class="math-symbol math-pi">π</span><span class="math-symbol math-sigma">Σ</span><span class="math-symbol math-square">x²</span><i></i><i></i><i></i></div><small>THINK · SOLVE · SUCCEED</small>';
 document.querySelector('.hero h1').after(heroMathMotion);
+heroMathMotion.dataset.motion='wave';
 
 const menuButton=document.querySelector('.menu-button');
 const nav=document.querySelector('.primary-nav');
