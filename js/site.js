@@ -353,6 +353,9 @@ classroomSection.innerHTML=`
     </div>
   </div>`;
 document.querySelector('.approach').before(classroomSection);
+const classroomMotionStyle=document.createElement('style');
+classroomMotionStyle.textContent='.classroom-art{animation:classroom-art-float 5s ease-in-out infinite}.lesson-live{animation:lesson-badge-pulse 2.4s ease-in-out infinite}@keyframes classroom-art-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}@keyframes lesson-badge-pulse{0%,100%{box-shadow:0 0 0 0 rgba(245,185,66,0)}50%{box-shadow:0 0 0 7px rgba(245,185,66,.16)}}@media(prefers-reduced-motion:reduce){.classroom-art,.lesson-live{animation:none}}';
+document.head.appendChild(classroomMotionStyle);
 
 const supportSection=document.createElement('section');
 supportSection.className='support-faq section';
