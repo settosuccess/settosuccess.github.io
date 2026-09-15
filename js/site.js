@@ -26,6 +26,9 @@ heroMathMotion.setAttribute('aria-hidden','true');
 heroMathMotion.innerHTML='<div class="math-orbit-ring"><svg class="brand-arc" viewBox="0 0 112 112" aria-hidden="true"><defs><path id="brandArcPath" d="M56 26a30 30 0 1 1 0 60a30 30 0 1 1 0-60"></path></defs><text><textPath href="#brandArcPath" startOffset="83%" text-anchor="middle">SET</textPath></text><text><textPath href="#brandArcPath" startOffset="17%" text-anchor="middle">TO</textPath></text><text><textPath href="#brandArcPath" startOffset="50%" text-anchor="middle">SUCCESS</textPath></text></svg><span class="math-core"><img src="img/brand-mark.svg" alt=""></span><span class="math-symbol math-pi">π</span><span class="math-symbol math-sigma">Σ</span><span class="math-symbol math-square">x²</span><i></i><i></i><i></i></div><small>THINK · SOLVE · SUCCEED</small>';
 document.querySelector('.hero h1').after(heroMathMotion);
 heroMathMotion.dataset.motion='wave';
+const quickbarMobileFix=document.createElement('style');
+quickbarMobileFix.textContent='@media(max-width:650px){.hero-quickbar{overflow:hidden;background:var(--paper)!important}.hero-quickbar-track{display:flex!important;width:300%!important;animation:quickbar-mobile-fix 12s ease-in-out infinite!important}.hero-quickbar-track>span{flex:0 0 33.333%!important;width:auto!important;min-width:0!important;overflow:hidden;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important}.hero-quickbar-track b,.hero-quickbar-track small{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}}@keyframes quickbar-mobile-fix{0%,24%{transform:translateX(0)}38%,62%{transform:translateX(-33.333%)}76%,100%{transform:translateX(-66.666%)}}';
+document.head.appendChild(quickbarMobileFix);
 
 const menuButton=document.querySelector('.menu-button');
 const nav=document.querySelector('.primary-nav');
