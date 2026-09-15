@@ -69,6 +69,7 @@ body,.site-header,.hero,.approach,.gallery,.contact,.approach-card,.primary-nav,
 [data-theme="dark"] .math-symbol{background:#0d2b38;color:#8dd7ea;border-color:rgba(255,255,255,.12)}
 [data-theme="dark"] .brand-arc text{fill:#8dd7ea}
 @keyframes math-orbit-spin{to{transform:rotate(360deg)}}
+@keyframes math-orbit-spin-mobile{from{transform:scale(1.2) rotate(0)}to{transform:scale(1.2) rotate(360deg)}}
 @keyframes math-symbol-counter{to{transform:rotate(-360deg)}}
 @keyframes math-caption-pulse{0%,100%{opacity:.62;letter-spacing:.12em}50%{opacity:1;letter-spacing:.16em}}
 @keyframes math-caption-color{0%,100%{color:var(--muted)}45%{color:var(--blue)}70%{color:var(--gold)}}
@@ -82,7 +83,7 @@ body,.site-header,.hero,.approach,.gallery,.contact,.approach-card,.primary-nav,
 @keyframes brand-word-float{0%,100%{opacity:.6;transform:translate(0,0)}50%{opacity:1;transform:translate(1px,-2px)}}
 @keyframes math-core-counter{from{transform:translate(-50%,-50%) rotate(0)}to{transform:translate(-50%,-50%) rotate(-360deg)}}
 @media(max-width:1100px){.hero-math-motion{right:-10px;top:12px;transform:scale(1)}}
-@media(max-width:960px){.hero-math-motion{position:relative;right:auto;top:auto;display:flex;align-items:center;justify-content:space-between;width:100%;height:auto;margin:25px 0 0;gap:14px;transform:none}.hero-math-motion small{order:1;flex:1}.math-orbit-ring{order:2;margin-left:auto;margin-right:4%;width:102px;height:102px}.math-orbit-ring::before{inset:13px}.math-orbit-ring::after{inset:35px}.brand-arc text{font-size:4.6px;letter-spacing:.6px}.math-symbol{width:35px;height:35px;font-size:16px;border-radius:10px}.math-pi{left:32px;top:-17px}.math-sigma{right:-16px;bottom:13px}.math-square{left:-16px;bottom:13px}.math-orbit-ring>i:nth-of-type(1){left:13px;top:26px}.math-orbit-ring>i:nth-of-type(2){left:89px;top:26px}.math-orbit-ring>i:nth-of-type(3){left:51px;top:95px}.hero-math-motion small{font-size:10px;text-align:left}}
+@media(max-width:960px){.hero-math-motion{position:relative;right:auto;top:auto;display:flex;align-items:center;justify-content:space-between;width:100%;height:auto;margin:25px 0 0;gap:14px;transform:none}.hero-math-motion small{order:1;flex:1}.math-orbit-ring{order:2;margin-left:auto;margin-right:4%;width:102px;height:102px;animation-name:math-orbit-spin-mobile}.math-orbit-ring::before{inset:13px}.math-orbit-ring::after{inset:35px}.brand-arc text{font-size:4.6px;letter-spacing:.6px}.math-symbol{width:35px;height:35px;font-size:16px;border-radius:10px}.math-pi{left:32px;top:-17px}.math-sigma{right:-16px;bottom:13px}.math-square{left:-16px;bottom:13px}.math-orbit-ring>i:nth-of-type(1){left:13px;top:26px}.math-orbit-ring>i:nth-of-type(2){left:89px;top:26px}.math-orbit-ring>i:nth-of-type(3){left:51px;top:95px}.hero-math-motion small{font-size:10px;text-align:left}}
 @media(max-width:650px){.hero-math-motion{margin:22px 0 4px;transform:scale(.95);transform-origin:center}}
 @media(max-width:650px){.hero-promise{font-size:11px;padding:6px 10px;margin-bottom:23px;white-space:nowrap}}
 .approach .section-heading.compact{max-width:none;margin-bottom:24px}
