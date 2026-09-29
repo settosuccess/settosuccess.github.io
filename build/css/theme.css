@@ -257,6 +257,7 @@ html[data-theme="dark"] .admission-form{background:#0b2632}.admission-section,.a
 .mobile-carousel{min-width:0;position:relative}
 .carousel-controls{display:none}
 .mobile-call{display:none}
+@media(max-width:960px){.menu-button{position:relative;z-index:60;display:grid;place-content:center;gap:5px}.menu-button span{width:21px;height:2px;margin:0;transition:transform .22s ease,opacity .18s ease}.menu-button[aria-expanded="true"] span:first-child{transform:translateY(7px) rotate(45deg)}.menu-button[aria-expanded="true"] span:nth-child(2){opacity:0}.menu-button[aria-expanded="true"] span:last-child{transform:translateY(-7px) rotate(-45deg)}}
 @media(min-width:961px) and (max-width:1150px){.nav-wrap{gap:16px}.primary-nav{gap:14px}.nav-actions{gap:8px}.primary-nav a{font-size:13px}.nav-actions .button-small{padding-inline:14px}}
 [data-theme="dark"] .career-card-featured{background:#155268;color:#fff}
 .about-typing{margin-top:40px;padding:24px 0 24px 24px;border-left:3px solid var(--gold)}
